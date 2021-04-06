@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1703759547588770329}
   - component: {fileID: 1703759547588770328}
   - component: {fileID: 1703759547588770330}
-  - component: {fileID: 2545656934135539117}
+  - component: {fileID: 5124543709145877493}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1814700631
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d3d423089d4c43b4e8b51a1e2a7a6019, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -138,8 +138,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!60 &2545656934135539117
-PolygonCollider2D:
+--- !u!70 &5124543709145877493
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,32 +151,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.41512325, y: 0.030570244}
-    oldSize: {x: 0.64, y: 0.44}
-    newSize: {x: 0.64, y: 0.44}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.03453894, y: 0.32276663}
-      - {x: -0.05868394, y: 0.27730036}
-      - {x: -0.063048236, y: 0.21049508}
-      - {x: -0.084538884, y: 0.17994288}
-      - {x: -0.089823924, y: 0.08882908}
-      - {x: -0.05729937, y: 0.08319704}
-      - {x: -0.061145157, y: -0.0068446947}
-      - {x: 0.056186114, y: -0.0055234665}
-      - {x: 0.06538979, y: 0.11065206}
-      - {x: 0.09737179, y: 0.11743272}
-      - {x: 0.09887786, y: 0.16158372}
-      - {x: 0.076290086, y: 0.22060265}
-      - {x: 0.093559526, y: 0.23391266}
-      - {x: 0.0981002, y: 0.27152157}
-      - {x: 0.0679911, y: 0.2703029}
-      - {x: 0.06675621, y: 0.3046579}
-      - {x: 0.03318112, y: 0.33333653}
+  m_Offset: {x: 0.004604029, y: 0.1617221}
+  m_Size: {x: 0.1852081, y: 0.33517548}
+  m_Direction: 0
