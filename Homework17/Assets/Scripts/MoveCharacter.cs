@@ -37,4 +37,22 @@ public class MoveCharacter : MonoBehaviour
     {
         characterRb.AddForce(jumpDirection * jumpForce * 3, ForceMode2D.Impulse);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag.ToLower() == "movable")
+        {
+            transform.SetParent(collision.transform);
+
+            transform.SetParent(collision.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag.ToLower() == "movable")
+        {
+            transform.parent = null;
+        }
+    }
 }
