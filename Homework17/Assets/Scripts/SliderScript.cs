@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PeakScript : MonoBehaviour
+public class SliderScript : MonoBehaviour
 {
-    SliderJoint2D slider;
-
-    private void Start()
-    {
-        slider = GetComponentInChildren<SliderJoint2D>();
-    }
+    [SerializeField] SliderJoint2D slider;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
