@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 public class Drag : MonoBehaviour/*, IBeginDragHandler, IDragHandler, IEndDragHandler*/
 {
@@ -51,7 +48,7 @@ public class Drag : MonoBehaviour/*, IBeginDragHandler, IDragHandler, IEndDragHa
     {
         // расчет положения курсора при захвате модели персонажа
         offset = transform.position -
-            Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+            camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
     }
 
     void OnMouseDrag()
@@ -61,6 +58,6 @@ public class Drag : MonoBehaviour/*, IBeginDragHandler, IDragHandler, IEndDragHa
         // Изменение позиции модели персонажа при перетаскивании
         Vector3 newPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
         // Присвоение новой позиции
-        transform.position = Camera.main.ScreenToWorldPoint(newPosition) + offset;
+        transform.position = camera.ScreenToWorldPoint(newPosition) + offset;
     }
 }
