@@ -5,13 +5,29 @@ using UnityEngine;
 
 public class MoveCharacter : MonoBehaviour
 {
+    /// <summary>
+    /// Поле компонента RigitBody героя
+    /// </summary>
     Rigidbody2D characterRb;
+    /// <summary>
+    /// Поле множителя скорости героя
+    /// </summary>
     float characterSpeed = 2;
+    /// <summary>
+    /// Поле множителя максимальной скорости героя
+    /// </summary>
     [SerializeField] float maxSpeed = 0.1f;
-    public float height;
+    /// <summary>
+    /// Поле компонента Animator главного героя
+    /// </summary>
     Animator animator;
-    [SerializeField, Range(0.1f, 1)] float jumpForce;
-
+    /// <summary>
+    /// Поле высоты прыжка главного героя
+    /// </summary>
+    [SerializeField, Range(0.1f, 2.5f)] float jumpForce;
+    /// <summary>
+    /// Свойство текущей скорости главного героя
+    /// </summary>
     Vector2 characterRbVelocity
     {
         get => characterRb.velocity;
@@ -19,32 +35,46 @@ public class MoveCharacter : MonoBehaviour
 
     private void Start()
     {
+        // Получение компонента RigitBody героя
         characterRb = GetComponent<Rigidbody2D>();
+        // Получениекомпонента Animator главного героя
         animator = GetComponent<Animator>();
     }
 
+    /// <summary>
+    /// Метод передвижения главного героя
+    /// </summary>
+    /// <param name="side"></param>
     public void Move(float side)
     {
+        // Перемещение героя по горизонтали
         transform.Translate(Vector2.right * side * characterSpeed * Time.deltaTime);
+        // Ограничение скорости передвижения персонажа
         characterRb.velocity = new Vector2(Mathf.Clamp(characterRbVelocity.x, -maxSpeed, maxSpeed), characterRbVelocity.y);
 
+        // Запуск\отключение анимации движения персонажа
         if (side > 0 || side < 0)
             animator.SetBool("Run", true);
         else
             animator.SetBool("Run", false);
     }
 
+    /// <summary>
+    /// Метод прыжка главного героя
+    /// </summary>
+    /// <param name="jumpDirection"></param>
     public void Jump(Vector2 jumpDirection)
     {
-        characterRb.AddForce(jumpDirection * jumpForce * 3, ForceMode2D.Impulse);
+        // Физическое воздействие на главного героя
+        characterRb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Установка родителем главного героя движущегося предмета
+        // для передвижения вместе с ним
         if (collision.transform.tag.ToLower() == "movable")
         {
-            transform.SetParent(collision.transform);
-
             transform.SetParent(collision.transform);
         }
     }
@@ -53,6 +83,7 @@ public class MoveCharacter : MonoBehaviour
     {
         if (collision.transform.tag.ToLower() == "movable")
         {
+            // Сброс родителя главного героя
             transform.parent = null;
         }
     }

@@ -6,15 +6,20 @@ public class MoveCamera : MonoBehaviour
 {
     //Vector2 destination;
     //bool isMove;
+    /// <summary>
+    /// Поле главного героя
+    /// </summary>
     GameObject warrior;
 
     private void Awake()
     {
+        // Иницализация поля главного героя
         warrior = GameObject.Find("Warrior");
     }
 
     private void Update()
     {
+        // Изменение положения камеры в след за героем
         transform.position = new Vector2(warrior.transform.position.x, warrior.transform.position.y + 0.5f);
 
         #region variant

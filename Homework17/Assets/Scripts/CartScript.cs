@@ -5,25 +5,33 @@ using UnityEngine;
 
 public class CartScript : MonoBehaviour
 {
+    // Коллекция колес
     List<WheelJoint2D> wheels;
 
     private void Start()
     {
+        // Получение соединений колес
         wheels = GetComponentsInChildren<WheelJoint2D>().ToList();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Запуск motor при коллизии с игроком
         if(collision.transform.tag.ToLower() == "player")
                 RotateWheels(true);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        // Отключение motor при коллизии с игроком
         if (collision.transform.tag.ToLower() == "player")
             RotateWheels(false);
     }
 
+    /// <summary>
+    /// Метод запуска вращения колес
+    /// </summary>
+    /// <param name="isRotate"></param>
     private void RotateWheels(bool isRotate)
     {
         foreach (var w in wheels)
