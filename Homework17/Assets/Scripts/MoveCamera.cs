@@ -19,6 +19,7 @@ public class MoveCamera : MonoBehaviour
 
     private void Update()
     {
+        if(warrior.transform.position.x > -1.15f)
         // Изменение положения камеры в след за героем
         transform.position = new Vector2(warrior.transform.position.x, warrior.transform.position.y + 0.5f);
 
