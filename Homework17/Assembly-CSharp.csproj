@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\UseMotorScript.cs" />
     <Compile Include="Assets\Scripts\SliderScript.cs" />
     <Compile Include="Assets\Scripts\CartScript.cs" />
+    <Compile Include="Assets\Scripts\BombScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
