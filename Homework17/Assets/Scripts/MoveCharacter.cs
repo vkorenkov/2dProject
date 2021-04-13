@@ -12,11 +12,11 @@ public class MoveCharacter : MonoBehaviour
     /// <summary>
     /// Поле множителя скорости героя
     /// </summary>
-    float characterSpeed = 2;
+    [SerializeField, Range(1, 10)] float characterSpeed = 1;
     /// <summary>
     /// Поле множителя максимальной скорости героя
     /// </summary>
-    [SerializeField] float maxSpeed = 0.1f;
+    [SerializeField, Range(0.1f, 5f)] float maxSpeed = 0.1f;
     /// <summary>
     /// Поле компонента Animator главного героя
     /// </summary>
@@ -24,7 +24,9 @@ public class MoveCharacter : MonoBehaviour
     /// <summary>
     /// Поле высоты прыжка главного героя
     /// </summary>
-    [SerializeField, Range(0.1f, 2.5f)] float jumpForce;
+    [SerializeField, Range(0.1f, 3f)] float jumpForce;
+
+    [SerializeField] bool isPhisicsMove;
     /// <summary>
     /// Свойство текущей скорости главного героя
     /// </summary>
@@ -48,7 +50,11 @@ public class MoveCharacter : MonoBehaviour
     public void Move(float side)
     {
         // Перемещение героя по горизонтали
-        transform.Translate(Vector2.right * side * characterSpeed * Time.deltaTime);
+        if(!isPhisicsMove)
+            transform.Translate(Vector2.right * side * characterSpeed * Time.deltaTime);
+        else 
+            characterRb.AddForce(Vector2.right * side * characterSpeed);
+
         // Ограничение скорости передвижения персонажа
         characterRb.velocity = new Vector2(Mathf.Clamp(characterRbVelocity.x, -maxSpeed, maxSpeed), characterRbVelocity.y);
 
