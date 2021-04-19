@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9145375922663212853}
   - component: {fileID: 9145375922663212810}
   - component: {fileID: 9145375922663212811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,9 +118,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9145375922722030024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stair
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 9145375922761009446}
   - component: {fileID: 9145375922761009447}
   - component: {fileID: 9145375922761009444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 9145375923154201858}
   - component: {fileID: 9145375923154201859}
   - component: {fileID: 9145375923154201856}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 9145375924036025934}
   - component: {fileID: 9145375924036025935}
   - component: {fileID: 9145375924036025932}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 9145375924493804160}
   - component: {fileID: 9145375924493804161}
   - component: {fileID: 9145375924493804166}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

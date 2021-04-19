@@ -33,7 +33,7 @@ public class InputCharacter : MonoBehaviour
     void Update()
     {
         // Считывание нажатия кнопок направления
-        horisontalAxis = Input.GetAxisRaw("Horizontal");
+        horisontalAxis = Input.GetAxis("Horizontal");
 
         // Разворот спрайта в сторону движения
         if (horisontalAxis > 0)

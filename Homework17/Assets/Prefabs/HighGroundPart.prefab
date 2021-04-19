@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3686051709645533745}
   - component: {fileID: 4056066838202905054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3131672881488335559}
   - component: {fileID: 9147982677671286696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1326830820285769772}
   - component: {fileID: 1707832233706744013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7808654357608152330}
   - component: {fileID: 427759340701400164}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7570610621872581142}
   - component: {fileID: 8905940028249071756}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4700637802429336000}
   - component: {fileID: 7134066287521936987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8676511330624825927}
   - component: {fileID: 3291046679639646273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6198959820206912233}
   - component: {fileID: 6117292747422483840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7038878287115147642}
   - component: {fileID: 8095511234912473508}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4553949208788622027}
   - component: {fileID: 8787417839797900568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2605337168731302947}
   - component: {fileID: 6235025871038251521}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,9 +912,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7467566450737402990}
   - component: {fileID: 6954655708566404670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HighGroundPart
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -981,7 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2274347007536084373}
   - component: {fileID: 5097392887357042647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Props_1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

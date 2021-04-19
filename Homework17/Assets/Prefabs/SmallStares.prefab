@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6276143378824990309}
   - component: {fileID: 6276143378824990310}
   - component: {fileID: 8404709622263899844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 6276143379824706500}
   - component: {fileID: 6276143379824706501}
   - component: {fileID: 8169239548105346623}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_13 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 6276143379987754678}
   - component: {fileID: 6276143379987754679}
   - component: {fileID: 217047001653776531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_13 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,9 +336,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6276143380149634880}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallStares
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

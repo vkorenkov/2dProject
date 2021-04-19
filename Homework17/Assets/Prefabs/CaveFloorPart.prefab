@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3593218746743522703}
   - component: {fileID: 3593218746743522700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3593218746933544110}
   - component: {fileID: 3593218746933544111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3593218747336547504}
   - component: {fileID: 3593218747336547505}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3593218747363894680}
   - component: {fileID: 3593218747363894681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tileset_12 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,9 +338,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3593218747415631920}
   - component: {fileID: 3593218747415631921}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CaveFloorPart
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

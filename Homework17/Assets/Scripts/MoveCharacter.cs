@@ -26,7 +26,14 @@ public class MoveCharacter : MonoBehaviour
     /// </summary>
     [SerializeField, Range(0.1f, 3f)] float jumpForce;
 
-    [SerializeField] bool isPhisicsMove;
+    [SerializeField] float jumpOffset;
+
+    [SerializeField] Transform groundColliderTransform;
+
+    [SerializeField] LayerMask groundMask;
+
+    [SerializeField] bool isPhysicsMove;
+
     /// <summary>
     /// Свойство текущей скорости главного героя
     /// </summary>
@@ -35,7 +42,12 @@ public class MoveCharacter : MonoBehaviour
         get => characterRb.velocity;
     }
 
-    private void Start()
+    bool isGrounded
+    {
+        get => Physics2D.OverlapCapsule(groundColliderTransform.position, new Vector2(jumpOffset, jumpOffset), CapsuleDirection2D.Horizontal, 0, groundMask);
+    }
+
+private void Start()
     {
         // Получение компонента RigitBody героя
         characterRb = GetComponent<Rigidbody2D>();
@@ -50,16 +62,16 @@ public class MoveCharacter : MonoBehaviour
     public void Move(float side)
     {
         // Перемещение героя по горизонтали
-        if(!isPhisicsMove)
+        if (!isPhysicsMove)
             transform.Translate(Vector2.right * side * characterSpeed * Time.deltaTime);
-        else 
+        else
             characterRb.AddForce(Vector2.right * side * characterSpeed);
 
         // Ограничение скорости передвижения персонажа
         characterRb.velocity = new Vector2(Mathf.Clamp(characterRbVelocity.x, -maxSpeed, maxSpeed), characterRbVelocity.y);
 
         // Запуск\отключение анимации движения персонажа
-        if (side > 0 || side < 0)
+        if (Mathf.Abs(side) > 0)
             animator.SetBool("Run", true);
         else
             animator.SetBool("Run", false);
@@ -71,8 +83,9 @@ public class MoveCharacter : MonoBehaviour
     /// <param name="jumpDirection"></param>
     public void Jump(Vector2 jumpDirection)
     {
-        // Физическое воздействие на главного героя
-        characterRb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+        if(isGrounded)
+            // Физическое воздействие на главного героя
+            characterRb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -84,6 +97,7 @@ public class MoveCharacter : MonoBehaviour
             transform.SetParent(collision.transform);
         }
     }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {

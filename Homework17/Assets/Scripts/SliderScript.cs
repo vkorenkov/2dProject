@@ -11,13 +11,15 @@ public class SliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Зпуск движения
-        slider.useMotor = true;
+        if (collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+            // Зпуск движения
+            slider.useMotor = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // Остановка движения
-        slider.useMotor = false;
+        if (collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+            // Остановка движения
+            slider.useMotor = false;
     }
 }

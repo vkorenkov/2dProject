@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoveCharacter.cs" />
     <Compile Include="Assets\Scripts\MoveCamera.cs" />
+    <Compile Include="Assets\Scripts\LaunchBombScript.cs" />
     <Compile Include="Assets\Scripts\Drag.cs" />
     <Compile Include="Assets\Scripts\InputCharacter.cs" />
     <Compile Include="Assets\Scripts\UseMotorScript.cs" />
