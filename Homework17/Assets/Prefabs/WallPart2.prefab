@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7432309259408079125}
   - component: {fileID: 5121818212005389173}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_126
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3773398344623586564}
   - component: {fileID: 4898767082860311291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_115
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8276010471672484147}
   - component: {fileID: 811866025605550567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_116
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 112584731801298319}
   - component: {fileID: 1415057663235034977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_126
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830879391770898}
   - component: {fileID: 5697830879391770897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_126
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830879549865622}
   - component: {fileID: 5697830879549865621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_130
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830879646538324}
   - component: {fileID: 5697830879646538323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_129
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830879711376781}
   - component: {fileID: 5697830879711376780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_123
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830879977335936}
   - component: {fileID: 5697830879977335951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_111 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830880955280408}
   - component: {fileID: 9047966021580853294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallPart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830881056776784}
   - component: {fileID: 5697830881056776799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_127
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -903,7 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830881099318128}
   - component: {fileID: 5697830881099318143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_111 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,7 +985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5697830881128102238}
   - component: {fileID: 5697830881128102237}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_111 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1067,7 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756304764013573220}
   - component: {fileID: 1312032443291783484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_111 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7408636508613842217}
   - component: {fileID: 3433509259075195696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_111 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,7 +1231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 724689474470832798}
   - component: {fileID: 8745688617760286623}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_115 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,7 +1313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4921910203923151143}
   - component: {fileID: 3415971912033331821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tileset_111 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

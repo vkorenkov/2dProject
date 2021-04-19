@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &725251079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 725251080}
+  m_Layer: 11
+  m_Name: BulletLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &725251080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725251079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.16, y: 0.21, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4725325001707886816}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4725325001707886818
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +46,8 @@ GameObject:
   - component: {fileID: 1236602172364105995}
   - component: {fileID: 6212507078962047118}
   - component: {fileID: 6212507078962047108}
+  - component: {fileID: 27787293}
+  - component: {fileID: 3236084657904294448}
   m_Layer: 3
   m_Name: Warrior
   m_TagString: Player
@@ -30,11 +62,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4725325001707886818}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.87, y: -5.18, z: 0}
   m_LocalScale: {x: 0.72984, y: 0.72984, z: 0.72984}
   m_Children:
   - {fileID: 6212507077531362575}
+  - {fileID: 725251080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,8 +187,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004604029, y: 0.16137654}
-  m_Size: {x: 0.1852081, y: 0.33586568}
+  m_Offset: {x: 0.004604029, y: 0.17206742}
+  m_Size: {x: 0.1852081, y: 0.3144839}
   m_Direction: 0
 --- !u!114 &6212507078962047118
 MonoBehaviour:
@@ -169,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d7747e9c732d4ba5dd90d1cbcfc8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpeed: 10
+  characterSpeed: 2
   maxSpeed: 2
   jumpForce: 2.7
   jumpOffset: 0.1
@@ -190,6 +223,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcf19db80926554d8d0f299d9bb1190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &27787293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725325001707886818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a1df8828394bd458647dda5dc4e2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  launcher: {fileID: 725251080}
+  bulletSpeed: 2
+  bullet: {fileID: 1760164494302353223, guid: 10488563f3903dc47adbe9ea2255b9b6, type: 3}
+  buletTorque: 20
+--- !u!114 &3236084657904294448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725325001707886818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4c22fdeb1b6244b882f0ecd211e418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  destroyTime: 100
 --- !u!1 &6212507077531362572
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6212507077531362575}
   - component: {fileID: 6212507077531362574}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: GroundedCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +294,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.002112997, y: 0.017118787}

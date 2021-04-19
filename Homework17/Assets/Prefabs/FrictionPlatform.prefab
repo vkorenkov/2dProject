@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1802556637853585431}
   - component: {fileID: 1802556637853585424}
   - component: {fileID: 1802556637853585430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrictionPlatform
   m_TagString: Ground
   m_Icon: {fileID: 0}

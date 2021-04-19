@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 2309051623661222485}
   - component: {fileID: 2309051623661222440}
   - component: {fileID: 2309051623661222487}
+  - component: {fileID: 5856061455951121635}
+  - component: {fileID: 1656231034927019933}
   - component: {fileID: 2309051623661222441}
+  - component: {fileID: 2027900719164712861}
   m_Layer: 10
   m_Name: RPG_Weapons_55
   m_TagString: Untagged
@@ -131,6 +134,71 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 60
     m_UpperAngle: -60
+--- !u!60 &5856061455951121635
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309051623661222484}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.37, y: 0.69}
+    newSize: {x: 0.37, y: 0.69}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.18089281, y: 0.52850455}
+      - {x: 0.17477119, y: 0.63205713}
+      - {x: 0.13643155, y: 0.68041366}
+      - {x: 0.10435801, y: 0.69855666}
+      - {x: 0.105741665, y: 0.64244497}
+      - {x: 0.048104007, y: 0.596162}
+      - {x: -0.04690037, y: 0.5980168}
+      - {x: -0.105460756, y: 0.6409803}
+      - {x: -0.11027677, y: 0.6900676}
+      - {x: -0.17220284, y: 0.6497656}
+      - {x: -0.18653372, y: 0.60558903}
+      - {x: -0.18753147, y: 0.49724206}
+      - {x: -0.16345811, y: 0.43018866}
+      - {x: -0.10997979, y: 0.39465523}
+      - {x: -0.1056962, y: 0.45647895}
+      - {x: -0.049845774, y: 0.49030474}
+      - {x: 0.04403424, y: 0.48872778}
+      - {x: 0.0816181, y: 0.4677342}
+      - {x: 0.11343462, y: 0.3939275}
+      - {x: 0.1672229, y: 0.4450761}
+--- !u!250 &1656231034927019933
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309051623661222484}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 50
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 1
+  m_ForceTarget: 1
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
 --- !u!114 &2309051623661222441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +211,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b87a033956657a4d9a71195d4061b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2027900719164712861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309051623661222484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7417ec404012d419840b0e376f67f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
 --- !u!1 &6266467487178126534
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,13 +234,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2526711231018993289}
   - component: {fileID: 6886384158476714166}
+  - component: {fileID: 4431152309331233996}
   m_Layer: 10
   m_Name: HitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2526711231018993289
 Transform:
   m_ObjectHideFlags: 0
@@ -185,7 +267,7 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -219,3 +301,23 @@ PolygonCollider2D:
       - {x: 0.0816181, y: 0.4677342}
       - {x: 0.11343462, y: 0.3939275}
       - {x: 0.1672229, y: 0.4450761}
+--- !u!250 &4431152309331233996
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6266467487178126534}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 50
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 1
+  m_ForceTarget: 1
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0

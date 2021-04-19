@@ -17,10 +17,7 @@ public class MoveCharacter : MonoBehaviour
     /// Поле множителя максимальной скорости героя
     /// </summary>
     [SerializeField, Range(0.1f, 5f)] float maxSpeed = 0.1f;
-    /// <summary>
-    /// Поле компонента Animator главного героя
-    /// </summary>
-    Animator animator;
+    
     /// <summary>
     /// Поле высоты прыжка главного героя
     /// </summary>
@@ -47,12 +44,10 @@ public class MoveCharacter : MonoBehaviour
         get => Physics2D.OverlapCapsule(groundColliderTransform.position, new Vector2(jumpOffset, jumpOffset), CapsuleDirection2D.Horizontal, 0, groundMask);
     }
 
-private void Start()
+    private void Start()
     {
         // Получение компонента RigitBody героя
         characterRb = GetComponent<Rigidbody2D>();
-        // Получениекомпонента Animator главного героя
-        animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -61,20 +56,27 @@ private void Start()
     /// <param name="side"></param>
     public void Move(float side)
     {
+        var absSide = Mathf.Abs(side);
+
+        if (side != 0)
+            transform.rotation = RotateSide(side);
+
         // Перемещение героя по горизонтали
         if (!isPhysicsMove)
-            transform.Translate(Vector2.right * side * characterSpeed * Time.deltaTime);
+            transform.Translate(Vector2.right * absSide * characterSpeed * Time.deltaTime);
         else
-            characterRb.AddForce(Vector2.right * side * characterSpeed);
+            characterRb.AddForce(Vector2.right * absSide * characterSpeed);
 
         // Ограничение скорости передвижения персонажа
         characterRb.velocity = new Vector2(Mathf.Clamp(characterRbVelocity.x, -maxSpeed, maxSpeed), characterRbVelocity.y);
+    }
 
-        // Запуск\отключение анимации движения персонажа
-        if (Mathf.Abs(side) > 0)
-            animator.SetBool("Run", true);
-        else
-            animator.SetBool("Run", false);
+    Quaternion RotateSide(float side)
+    {
+        var rotateY = side > 0 ? Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z) :
+                 Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+
+        return rotateY;
     }
 
     /// <summary>
@@ -83,7 +85,7 @@ private void Start()
     /// <param name="jumpDirection"></param>
     public void Jump(Vector2 jumpDirection)
     {
-        if(isGrounded)
+        if (isGrounded)
             // Физическое воздействие на главного героя
             characterRb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
     }

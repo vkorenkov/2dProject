@@ -18,9 +18,9 @@ TagManager:
   - 'Explosion '
   - Movable
   - Damage
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - Enemy
+  - GroundChecker
   - 
   - 
   - 

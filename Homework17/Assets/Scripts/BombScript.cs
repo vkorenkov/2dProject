@@ -9,6 +9,7 @@ public class BombScript : MonoBehaviour
     ParticleSystem explosionPs;
     PointEffector2D bombEffector;
     SpriteRenderer bombSprite;
+    CircleCollider2D bombPointEffector;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class BombScript : MonoBehaviour
         explosionPs = GetComponentInChildren<ParticleSystem>();
         bombEffector = GetComponent<PointEffector2D>();
         bombSprite = GetComponent<SpriteRenderer>();
+        bombPointEffector = GetComponent<CircleCollider2D>();
 
         bombRb.AddForce(transform.up * Random.Range(2, 5), ForceMode2D.Impulse);
         bombRb.AddTorque(Random.Range(-2, 2), ForceMode2D.Impulse);
@@ -23,7 +25,7 @@ public class BombScript : MonoBehaviour
 
     private void Update()
     {
-        if(!explosionPs.isPlaying && !bombSprite.enabled)
+        if (!explosionPs.isPlaying && !bombSprite.enabled)
             Destroy(gameObject);
     }
 
@@ -33,8 +35,15 @@ public class BombScript : MonoBehaviour
         {
             explosionPs.Play();
             bombSprite.enabled = false;
+            bombPointEffector.enabled = true;
             bombEffector.enabled = true;
             bombRb.constraints = RigidbodyConstraints2D.FreezePositionX;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            Debug.Log($"{collision.tag}");
     }
 }
