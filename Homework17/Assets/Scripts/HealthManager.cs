@@ -24,7 +24,7 @@ public class HealthManager : MonoBehaviour
             currentHealth -= currentHealth;
 
         currentHealth -= damage;
-        Debug.Log($"Здоровья осталось {currentHealth}");
+
         isAlive = CheckCharacterHealth();
 
         if (!isAlive)

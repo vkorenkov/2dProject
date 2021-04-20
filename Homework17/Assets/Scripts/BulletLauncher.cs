@@ -5,16 +5,16 @@ public class BulletLauncher : MonoBehaviour
     [SerializeField] Transform launcher;
     [SerializeField, Range(1, 10)] float bulletSpeed;
     [SerializeField] GameObject bullet;
-    [SerializeField] float buletTorque;
+    [SerializeField] float bulletTorque;
 
     public void Shoot()
     {
-        GameObject newBullet = Instantiate(bullet, launcher.position, Quaternion.identity);
+        Rigidbody2D newBullet = Instantiate(bullet, launcher.position, Quaternion.identity).GetComponent<Rigidbody2D>();
 
-        var bulletRb = newBullet.GetComponent<Rigidbody2D>();
+        bulletTorque = transform.rotation.y < 0 ? -Mathf.Abs(bulletTorque) : Mathf.Abs(bulletTorque);
 
-        bulletRb.AddTorque(buletTorque, ForceMode2D.Impulse);
+        newBullet.AddTorque(bulletTorque, ForceMode2D.Impulse);
 
-        bulletRb.AddForce(transform.right * bulletSpeed, ForceMode2D.Impulse);
+        newBullet.AddForce(transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 }

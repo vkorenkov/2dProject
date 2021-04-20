@@ -95,9 +95,7 @@ public class MoveCharacter : MonoBehaviour
         // Установка родителем главного героя движущегося предмета
         // для передвижения вместе с ним
         if (collision.transform.tag.ToLower() == "movable")
-        {
             transform.SetParent(collision.transform);
-        }
     }
 
 
