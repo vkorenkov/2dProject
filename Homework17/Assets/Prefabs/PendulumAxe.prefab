@@ -190,7 +190,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7038
   m_ForceMagnitude: 50
   m_ForceVariation: 0
   m_DistanceScale: 1
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7417ec404012d419840b0e376f67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggerObj: 1
   damage: 30
 --- !u!1 &6266467487178126534
 GameObject:

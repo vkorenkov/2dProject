@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5467695985199807067}
   - component: {fileID: 5467695985199807066}
   - component: {fileID: 8406006282501301293}
+  - component: {fileID: 759464348275826538}
   m_Layer: 8
   m_Name: Bomb
   m_TagString: Untagged
@@ -152,7 +153,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 510
   m_ForceMagnitude: 50
   m_ForceVariation: 10
   m_DistanceScale: 1
@@ -173,6 +174,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbaecdbca1918142a76abbd9ea323d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &759464348275826538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467695985199807065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7417ec404012d419840b0e376f67f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTriggerObj: 1
+  damage: 50
 --- !u!1 &5467695985344110292
 GameObject:
   m_ObjectHideFlags: 0

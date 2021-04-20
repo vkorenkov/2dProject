@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 1281311035365774617}
   - component: {fileID: 1281311035365774619}
   - component: {fileID: 1281311035365774616}
-  m_Layer: 0
+  - component: {fileID: 8142244453554342170}
+  - component: {fileID: 7214551339273391195}
+  - component: {fileID: 5484394831297034344}
+  m_Layer: 10
   m_Name: Peak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +134,70 @@ SliderJoint2D:
   m_TranslationLimits:
     m_LowerTranslation: 0
     m_UpperTranslation: 0.15
+--- !u!60 &8142244453554342170
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281311035365774623}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.62, y: 0.62}
+    newSize: {x: 0.62, y: 0.62}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.30915028, y: 0.6168426}
+      - {x: 0.1997999, y: 0.5831967}
+      - {x: 0.17178136, y: 0.5234342}
+      - {x: 0.21412914, y: 0.48421535}
+      - {x: 0.27188745, y: 0.5087903}
+--- !u!250 &7214551339273391195
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281311035365774623}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 7678
+  m_ForceMagnitude: 100
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 1
+  m_ForceTarget: 1
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
+--- !u!114 &5484394831297034344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281311035365774623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7417ec404012d419840b0e376f67f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTriggerObj: 1
+  damage: 10
 --- !u!1 &1281311036243019331
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +209,7 @@ GameObject:
   - component: {fileID: 1281311036243019330}
   - component: {fileID: 1281311036243019341}
   - component: {fileID: 1281311036243019340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PeakObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

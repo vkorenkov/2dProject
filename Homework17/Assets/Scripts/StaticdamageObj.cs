@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class StaticdamageObj : MonoBehaviour
 {
+    [SerializeField] bool isTriggerObj;
+
     [SerializeField] float damage;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Damage(collision, damage);
+        if (!isTriggerObj && collision.gameObject.tag.ToLower() == "player")
+            Damage(collision, damage);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Damage(collision, damage);
+        if (isTriggerObj && collision.gameObject.tag.ToLower() == "player")
+            Damage(collision, damage);
     }
 
     void Damage(Collision2D collision, float damage)

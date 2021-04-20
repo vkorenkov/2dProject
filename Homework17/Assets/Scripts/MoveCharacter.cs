@@ -17,7 +17,7 @@ public class MoveCharacter : MonoBehaviour
     /// Поле множителя максимальной скорости героя
     /// </summary>
     [SerializeField, Range(0.1f, 5f)] float maxSpeed = 0.1f;
-    
+
     /// <summary>
     /// Поле высоты прыжка главного героя
     /// </summary>
@@ -34,12 +34,12 @@ public class MoveCharacter : MonoBehaviour
     /// <summary>
     /// Свойство текущей скорости главного героя
     /// </summary>
-    Vector2 characterRbVelocity
+    Vector2 CharacterRbVelocity
     {
         get => characterRb.velocity;
     }
 
-    bool isGrounded
+    public bool IsGrounded
     {
         get => Physics2D.OverlapCapsule(groundColliderTransform.position, new Vector2(jumpOffset, jumpOffset), CapsuleDirection2D.Horizontal, 0, groundMask);
     }
@@ -68,7 +68,7 @@ public class MoveCharacter : MonoBehaviour
             characterRb.AddForce(Vector2.right * absSide * characterSpeed);
 
         // Ограничение скорости передвижения персонажа
-        characterRb.velocity = new Vector2(Mathf.Clamp(characterRbVelocity.x, -maxSpeed, maxSpeed), characterRbVelocity.y);
+        characterRb.velocity = new Vector2(Mathf.Clamp(CharacterRbVelocity.x, -maxSpeed, maxSpeed), CharacterRbVelocity.y);
     }
 
     Quaternion RotateSide(float side)
@@ -85,7 +85,7 @@ public class MoveCharacter : MonoBehaviour
     /// <param name="jumpDirection"></param>
     public void Jump(Vector2 jumpDirection)
     {
-        if (isGrounded)
+        if (IsGrounded)
             // Физическое воздействие на главного героя
             characterRb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
     }

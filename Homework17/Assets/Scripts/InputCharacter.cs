@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class InputCharacter : MonoBehaviour
 {
-    HealthManager healthManager;
-
     /// <summary>
     /// Поле компонента Animator главного героя
     /// </summary>
@@ -23,6 +21,10 @@ public class InputCharacter : MonoBehaviour
     /// </summary>
     Vector2 jump;
 
+    [SerializeField] float shootTime;
+
+    float shootTimer;
+
     [SerializeField] bool isControlEnable;
 
     BulletLauncher bulletLauncher;
@@ -31,16 +33,14 @@ public class InputCharacter : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        isControlEnable = true;
-
-        healthManager = GetComponent<HealthManager>();
-
-        healthManager.ControlEnableEvent += HealthManager_ControlEnableEvent;
-
         // Инициализация эеземпляра класса передвижения персонажа
         move = GetComponent<MoveCharacter>();
 
         bulletLauncher = GetComponent<BulletLauncher>();
+
+        shootTimer = shootTime;
+
+        GetComponent<HealthManager>().ControlEnableEvent += HealthManager_ControlEnableEvent;
     }
 
     private void HealthManager_ControlEnableEvent(bool isAlive)
@@ -49,16 +49,29 @@ public class InputCharacter : MonoBehaviour
     }
 
     void Update()
-    {
+    {       
         if (isControlEnable)
         {
             Controls();
 
+            shootTimer += Time.deltaTime;
+
+            if (shootTimer > shootTime)
+            {
+                shootTimer = 0;
+
+                ShootControl();
+            }
+
             // Запуск\отключение анимации движения персонажа
-            var go = Mathf.Abs(horisontalAxis) > 0 ? true : false;
+            var go = Mathf.Abs(horisontalAxis) > 0;
 
             animator.SetBool("Run", go);
+
+            animator.SetBool("Dash", !move.IsGrounded);
         }
+        else
+            horisontalAxis = 0;
     }
 
     void FixedUpdate()
@@ -80,13 +93,20 @@ public class InputCharacter : MonoBehaviour
 
         // считывание нажатия кнопки прыжка
         if (Input.GetButtonDown("Jump"))
+        {
             jump = Vector2.up;
+        }
+    }
 
-        if (Input.GetButtonDown("Fire1"))
+    void ShootControl()
+    {
+        if (Input.GetButton("Fire1"))
         {
             bulletLauncher.Shoot();
 
             animator.SetBool("Attack", true);
         }
+        else
+            shootTimer = shootTime + 1;
     }
 }
