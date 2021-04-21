@@ -11,7 +11,7 @@ public class BulletLauncher : MonoBehaviour
     {
         Rigidbody2D newBullet = Instantiate(bullet, launcher.position, Quaternion.identity).GetComponent<Rigidbody2D>();
 
-        bulletTorque = transform.rotation.y < 0 ? -Mathf.Abs(bulletTorque) : Mathf.Abs(bulletTorque);
+        bulletTorque = transform.rotation.y < 0 ? Mathf.Abs(bulletTorque) : -Mathf.Abs(bulletTorque);
 
         newBullet.AddTorque(bulletTorque, ForceMode2D.Impulse);
 

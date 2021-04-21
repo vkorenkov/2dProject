@@ -21,8 +21,8 @@ TagManager:
   - PlayerBullet
   - Enemy
   - GroundChecker
-  - 
-  - 
+  - Particles
+  - DescriptionText
   - 
   - 
   - 

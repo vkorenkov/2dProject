@@ -55,7 +55,7 @@ public class HealthManager : MonoBehaviour
 
     void DeactivatedAnimations()
     {
-        foreach(var a in characterAnimator.parameters)
+        foreach (var a in characterAnimator.parameters)
         {
             characterAnimator.SetBool(a.name, false);
         }
@@ -63,6 +63,21 @@ public class HealthManager : MonoBehaviour
 
     bool CheckCharacterHealth()
     {
+        if (output)
+            output.ChangeTextColor(output.healthCount, CheckHealthColor());
+
         return currentHealth > 0;
+    }
+
+    Color CheckHealthColor()
+    {
+        Color color = new Color();
+
+        if (currentHealth > 75) color = Color.green;
+        if (currentHealth < 75) color = Color.yellow;
+        if (currentHealth < 50) color = new Color(205, 87, 0);
+        if (currentHealth < 25) color = Color.red;
+
+        return color;
     }
 }

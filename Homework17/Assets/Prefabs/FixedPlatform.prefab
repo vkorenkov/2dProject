@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7237090468283850415}
   - component: {fileID: 7237090468283850412}
   - component: {fileID: 7237090468283850413}
-  - component: {fileID: 5729418048398729680}
   - component: {fileID: 7237090468283850410}
   - component: {fileID: 4652624892371917145}
+  - component: {fileID: 2139672620453079068}
   m_Layer: 7
   m_Name: FixedPlatform
   m_TagString: Ground
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0.056538556}
+  m_Offset: {x: 0, y: 0.05477701}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,44 +110,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.010374807}
+  m_Size: {x: 0.8, y: 0.039487798}
   m_EdgeRadius: 0
---- !u!66 &5729418048398729680
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7237090468283850411}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0.02
-  m_ColliderPaths:
-  - m_Collider: {fileID: 7237090468283850413}
-    m_ColliderPaths:
-    - - X: 2261509
-        Y: 332731
-      - X: 2261509
-        Y: 399955
-      - X: -2261802
-        Y: 399662
-      - X: -2261509
-        Y: 332731
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 0.2261216, y: 0.0332731}
-      - {x: 0.2261216, y: 0.0399955}
-      - {x: -0.2261801, y: 0.0399368}
-      - {x: -0.22612171, y: 0.0332731}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
 --- !u!50 &7237090468283850410
 Rigidbody2D:
   serializedVersion: 4
@@ -187,3 +151,39 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: 8.650747, y: 0.2911}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!66 &2139672620453079068
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7237090468283850411}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 7237090468283850413}
+    m_ColliderPaths:
+    - - X: 2261802
+        Y: 482860
+      - X: -2261802
+        Y: 482860
+      - X: -2261802
+        Y: 226998
+      - X: 2261802
+        Y: 226998
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.2261802, y: 0.048286002}
+      - {x: -0.2261802, y: 0.048286002}
+      - {x: -0.2261802, y: 0.0226998}
+      - {x: 0.2261802, y: 0.0226998}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0
