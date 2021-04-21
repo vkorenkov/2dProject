@@ -20,29 +20,43 @@ public class InputCharacter : MonoBehaviour
     /// Поле вектора прыжка
     /// </summary>
     Vector2 jump;
+    /// <summary>
+    /// Интервал между "выстрелами"
+    /// </summary>
+    [SerializeField, Header("Shot interval")] float shotTime;
+    /// <summary>
+    /// Таймер выстрела
+    /// </summary>
+    float shotTimer;
 
-    [SerializeField] float shootTime;
+    [SerializeField, Header("Control enable")] bool isControlEnable;
 
-    float shootTimer;
-
-    [SerializeField] bool isControlEnable;
-
+    /// <summary>
+    /// Компонент запуска снаряда
+    /// </summary>
     BulletLauncher bulletLauncher;
 
     private void Start()
     {
+        // Получение анимаций
         animator = GetComponent<Animator>();
 
         // Инициализация эеземпляра класса передвижения персонажа
         move = GetComponent<MoveCharacter>();
 
+        // Получение компонента BulletLauncher
         bulletLauncher = GetComponent<BulletLauncher>();
 
-        shootTimer = shootTime;
+        shotTimer = shotTime; // Назначение таймера выстрела
 
+        // Подписка на событие изменения доступности управления
         GetComponent<HealthManager>().ControlEnableEvent += HealthManager_ControlEnableEvent;
     }
 
+    /// <summary>
+    /// Обработчик события изменения доступности управления
+    /// </summary>
+    /// <param name="isAlive"></param>
     private void HealthManager_ControlEnableEvent(bool isAlive)
     {
         isControlEnable = isAlive;
@@ -54,21 +68,21 @@ public class InputCharacter : MonoBehaviour
         {
             Controls();
 
-            shootTimer += Time.deltaTime;
+            shotTimer += Time.deltaTime; // Изменение таймера
 
-            if (shootTimer > shootTime)
+            if (shotTimer > shotTime)
             {
-                shootTimer = 0;
+                shotTimer = 0;
 
-                ShootControl();
+                ShotControl();
             }
 
             // Запуск\отключение анимации движения персонажа
             var go = Mathf.Abs(horisontalAxis) > 0;
 
-            animator.SetBool("Run", go);
+            animator.SetBool("Run", go); // Запуск анимации бега
 
-            animator.SetBool("Dash", !move.IsGrounded);
+            animator.SetBool("Dash", !move.IsGrounded); // Запуск анимации прыжка
         }
         else
             horisontalAxis = 0;
@@ -76,7 +90,7 @@ public class InputCharacter : MonoBehaviour
 
     void FixedUpdate()
     {
-        animator.SetBool("Attack", false);
+        animator.SetBool("Attack", false); // Завершение анимации атаки
 
         // Вызов метода передвижения персонажа
         move.Move(horisontalAxis);
@@ -86,6 +100,9 @@ public class InputCharacter : MonoBehaviour
         jump = new Vector2();
     }
 
+    /// <summary>
+    /// Метод передвижения персонажа
+    /// </summary>
     void Controls()
     {
         // Считывание нажатия кнопок направления
@@ -98,15 +115,18 @@ public class InputCharacter : MonoBehaviour
         }
     }
 
-    void ShootControl()
+    /// <summary>
+    /// Метод управления выстрелом
+    /// </summary>
+    void ShotControl()
     {
         if (Input.GetButton("Fire1"))
         {
-            bulletLauncher.Shoot();
+            bulletLauncher.Shot(); // Вызов метода выстрела
 
-            animator.SetBool("Attack", true);
+            animator.SetBool("Attack", true); // Запуск анимации атаки
         }
         else
-            shootTimer = shootTime + 1;
+            shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера
     }
 }

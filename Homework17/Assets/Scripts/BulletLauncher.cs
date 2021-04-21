@@ -2,19 +2,36 @@ using UnityEngine;
 
 public class BulletLauncher : MonoBehaviour
 {
-    [SerializeField] Transform launcher;
-    [SerializeField, Range(1, 10)] float bulletSpeed;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float bulletTorque;
+    /// <summary>
+    /// Объект, откуда будет производиться запуск снаряда
+    /// </summary>
+    [SerializeField, Header("Projectile launcher")] Transform launcher;
+    /// <summary>
+    /// Скорость полета снаряда
+    /// </summary>
+    [SerializeField, Range(1, 10), Header("Projectile speed")] 
+    float bulletSpeed;
+    /// <summary>
+    /// Объект снаряда
+    /// </summary>
+    [SerializeField, Header("Projectile Object")] GameObject bullet;
+    /// <summary>
+    /// Значение вращения снаряда
+    /// </summary>
+    [SerializeField, Header("Projectile torque")] float bulletTorque;
 
-    public void Shoot()
+    /// <summary>
+    /// Метод создания экземпляра снаряда
+    /// </summary>
+    public void Shot()
     {
+        // Создание экзкмпляра объекта снаряда
         Rigidbody2D newBullet = Instantiate(bullet, launcher.position, Quaternion.identity).GetComponent<Rigidbody2D>();
-
+        // Присвоение значения вращения снаряда в зависимости от стороны движения
         bulletTorque = transform.rotation.y < 0 ? Mathf.Abs(bulletTorque) : -Mathf.Abs(bulletTorque);
-
+        // ПРидание вращения снаряду
         newBullet.AddTorque(bulletTorque, ForceMode2D.Impulse);
-
+        // Придание скорости сраряду
         newBullet.AddForce(transform.right * bulletSpeed, ForceMode2D.Impulse);
     }
 }

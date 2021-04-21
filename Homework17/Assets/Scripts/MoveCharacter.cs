@@ -21,14 +21,24 @@ public class MoveCharacter : MonoBehaviour
     /// <summary>
     /// Поле высоты прыжка главного героя
     /// </summary>
-    [SerializeField, Range(0.1f, 3f)] float jumpForce;
+    [SerializeField, Range(0.1f, 3f), Header("Force of jump")] 
+    float jumpForce;
 
-    [SerializeField] float jumpOffset;
-
-    [SerializeField] Transform groundColliderTransform;
-
+    /// <summary>
+    /// Корректировка фиксации прыжка
+    /// </summary>
+    [SerializeField, Header("Jump offset")] float jumpOffset;
+    /// <summary>
+    /// Положение коллайдера проверки нахождения на земле
+    /// </summary>
+    [SerializeField, Header("Ground Checker")] Transform groundColliderTransform;
+    /// <summary>
+    /// Маска поверхности
+    /// </summary>
     [SerializeField] LayerMask groundMask;
-
+    /// <summary>
+    /// включение\выключение движения по физической модели
+    /// </summary>
     [SerializeField] bool isPhysicsMove;
 
     /// <summary>
@@ -39,6 +49,9 @@ public class MoveCharacter : MonoBehaviour
         get => characterRb.velocity;
     }
 
+    /// <summary>
+    /// Свойство проверки положения персонажа на земле
+    /// </summary>
     public bool IsGrounded
     {
         get => Physics2D.OverlapCapsule(groundColliderTransform.position, new Vector2(jumpOffset, jumpOffset), CapsuleDirection2D.Horizontal, 0, groundMask);
