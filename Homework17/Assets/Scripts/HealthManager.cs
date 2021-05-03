@@ -33,6 +33,8 @@ public class HealthManager : MonoBehaviour
     /// </summary>
     Output output;
 
+    [SerializeField] bool godMode;
+
     private void Awake()
     {
         isAlive = true; // Ќазначение состо€ни€ персонажа
@@ -58,6 +60,9 @@ public class HealthManager : MonoBehaviour
     /// <param name="damage"></param>
     public void TakeDamage(bool totaldamage, float damage = 0)
     {
+        if (godMode)
+            return;
+
         // ”словие при котором отнимаетс€ все доступное здоровье персонажа
         if (totaldamage)
             currentHealth -= currentHealth;

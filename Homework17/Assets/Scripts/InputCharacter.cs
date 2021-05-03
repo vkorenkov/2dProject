@@ -120,7 +120,7 @@ public class InputCharacter : MonoBehaviour
     /// </summary>
     void ShotControl()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire2"))
         {
             bulletLauncher.Shot(); // Вызов метода выстрела
 

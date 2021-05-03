@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D bulletRb;
 
     [SerializeField, Header("Effect of the hit")] ParticleSystem hitEffect;
+    [SerializeField, Header("Effect of the no hit")] ParticleSystem noHitEffect;
 
     private void Awake()
     {
@@ -53,6 +54,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log(collision.Ge);
+
         // Попытка получения компонента HealthManager при столкновении с препятствием
         if (collision.gameObject.TryGetComponent(out HealthManager collisionObjHealth))
         {
@@ -63,14 +66,26 @@ public class Bullet : MonoBehaviour
 
             collisionObjHealth.TakeDamage(false, damage); // Нанесение урона
 
-            GetComponent<SpriteRenderer>().enabled = false; // Отключение изображения снаряда
-            GetComponent<Collider2D>().enabled = false; // Отключение коллайдера снаряда
-
-            Destroy(gameObject, hitEffect.main.duration); // Запуск уничтожения объекта снаряда при столкновении с объектом, который может получить урон
+            DestroyProjectile(hitEffect.main.duration);
 
             return;
         }
+        else
+        {
+            if (noHitEffect)
+                noHitEffect.Play();
 
-        Destroy(gameObject); // Запуск уничтожения объекта снаряда
+            DestroyProjectile(noHitEffect.main.duration);
+
+            return;
+        }
+    }
+
+    void DestroyProjectile(float destryTime)
+    {
+        GetComponent<SpriteRenderer>().enabled = false; // Отключение изображения снаряда
+        GetComponent<Collider2D>().enabled = false; // Отключение коллайдера снаряда
+
+        Destroy(gameObject, destryTime); // Запуск уничтожения объекта снаряда при столкновении с объектом, который может получить урон
     }
 }
