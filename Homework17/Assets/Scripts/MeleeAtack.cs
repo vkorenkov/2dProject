@@ -7,26 +7,21 @@ public class MeleeAtack : MonoBehaviour
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange;
     [SerializeField] float damage;
-    [SerializeField] float attackCoolDown;
-    [SerializeField] Animator animator;
+    [SerializeField] LayerMask layerMask;
 
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-
-    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void Attack()
+    public void Attack()
     {
+        var damageObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
 
+        foreach (var d in damageObjects)
+        {
+            d.GetComponent<HealthManager>().TakeDamage(false, damage);
+        }
     }
 }

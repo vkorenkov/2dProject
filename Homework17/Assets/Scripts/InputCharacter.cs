@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class InputCharacter : MonoBehaviour
 {
+    bool run;
+
     /// <summary>
     /// Поле компонента Animator главного героя
     /// </summary>
     Animator animator;
-
     /// <summary>
     /// Поле класса передвижения персонажа
     /// </summary>
@@ -24,19 +26,25 @@ public class InputCharacter : MonoBehaviour
     /// Интервал между "выстрелами"
     /// </summary>
     [SerializeField, Header("Shot interval")] float shotTime;
+
+    [SerializeField, Header("Melee interval")] float meleeTime;
     /// <summary>
     /// Таймер выстрела
     /// </summary>
     float shotTimer;
 
+    float meleeTimer;
+
     [SerializeField, Header("Control enable")] bool isControlEnable;
+
+    MeleeAtack meleeAtack;
 
     /// <summary>
     /// Компонент запуска снаряда
     /// </summary>
     BulletLauncher bulletLauncher;
 
-    private void Start()
+    private void Awake()
     {
         // Получение анимаций
         animator = GetComponent<Animator>();
@@ -44,8 +52,12 @@ public class InputCharacter : MonoBehaviour
         // Инициализация эеземпляра класса передвижения персонажа
         move = GetComponent<MoveCharacter>();
 
+        meleeAtack = GetComponent<MeleeAtack>();
+
         // Получение компонента BulletLauncher
         bulletLauncher = GetComponent<BulletLauncher>();
+
+        meleeTimer = meleeTime;
 
         shotTimer = shotTime; // Назначение таймера выстрела
 
@@ -63,24 +75,21 @@ public class InputCharacter : MonoBehaviour
     }
 
     void Update()
-    {       
+    {
         if (isControlEnable)
         {
-            Controls();
-
             shotTimer += Time.deltaTime; // Изменение таймера
 
-            if (shotTimer > shotTime)
-            {
-                shotTimer = 0;
+            meleeTimer += Time.deltaTime;
 
-                ShotControl();
-            }
+            MeleeActivate();
+
+            ShootActivate();
+
+            Controls();          
 
             // Запуск\отключение анимации движения персонажа
-            var go = Mathf.Abs(horisontalAxis) > 0;
-
-            animator.SetBool("Run", go); // Запуск анимации бега
+            run = Mathf.Abs(horisontalAxis) > 0;
 
             animator.SetBool("Dash", !move.IsGrounded); // Запуск анимации прыжка
         }
@@ -90,8 +99,6 @@ public class InputCharacter : MonoBehaviour
 
     void FixedUpdate()
     {
-        animator.SetBool("Attack", false); // Завершение анимации атаки
-
         // Вызов метода передвижения персонажа
         move.Move(horisontalAxis);
         // Вызов метода прыжка
@@ -105,13 +112,22 @@ public class InputCharacter : MonoBehaviour
     /// </summary>
     void Controls()
     {
+        animator.speed = 1f;
+
+        animator.SetBool("Run", run); // Запуск анимации бега
+
         // Считывание нажатия кнопок направления
         horisontalAxis = Input.GetAxis("Horizontal");
 
         // считывание нажатия кнопки прыжка
         if (Input.GetButtonDown("Jump"))
-        {
             jump = Vector2.up;
+
+        if (meleeTimer < meleeTime)
+        {
+            animator.speed = 2f;
+
+            horisontalAxis = 0;
         }
     }
 
@@ -120,13 +136,45 @@ public class InputCharacter : MonoBehaviour
     /// </summary>
     void ShotControl()
     {
-        if (Input.GetButton("Fire2"))
-        {
-            bulletLauncher.Shot(); // Вызов метода выстрела
+        bulletLauncher.Shot(); // Вызов метода выстрела
 
-            animator.SetBool("Attack", true); // Запуск анимации атаки
+        animator.SetTrigger("Attack"); // Запуск анимации атаки
+    }
+
+    void MeleeControl()
+    {
+        meleeAtack.Attack();      
+
+        animator.SetTrigger("Attack");
+    }
+
+    void MeleeActivate()
+    {
+        if (meleeTimer > meleeTime)
+        {
+            if (Input.GetButtonDown("Fire1") && move.IsGrounded)
+            {
+                meleeTimer = 0;
+
+                MeleeControl();
+            }
+            else
+                meleeTimer = meleeTime + 1;
         }
-        else
-            shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера
+    }
+
+    void ShootActivate()
+    {
+        if (shotTimer > shotTime)
+        {
+            if (Input.GetButton("Fire2"))
+            {
+                shotTimer = 0;
+
+                ShotControl();
+            }
+            else
+                shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера
+        }
     }
 }

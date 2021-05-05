@@ -379,6 +379,36 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!1 &1402476101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402476102}
+  m_Layer: 3
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1402476102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402476101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1077, y: 0.162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4725325001707886816}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1451427305
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +526,7 @@ Transform:
   - {fileID: 725251080}
   - {fileID: 1133187696}
   - {fileID: 1214248843}
+  - {fileID: 1402476102}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -652,6 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotTime: 0.5
+  meleeTime: 0.5
   isControlEnable: 1
 --- !u!114 &27787293
 MonoBehaviour:
@@ -709,11 +741,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d7f58279be9004a8f84ece49b4f8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 0}
-  attackRange: 0
+  attackPoint: {fileID: 1402476102}
+  attackRange: 0.15
   damage: 0
-  attackCoolDown: 0
-  animator: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6212507077531362572
 GameObject:
   m_ObjectHideFlags: 0
