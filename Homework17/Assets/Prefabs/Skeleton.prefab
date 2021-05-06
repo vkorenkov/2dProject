@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 66
   destroyTime: 3
+  output: {fileID: 3995606062942959659}
+  godMode: 0
 --- !u!114 &2022372484136707056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthCount: {fileID: 8304732774684738229}
+  projectileCount: {fileID: 0}
 --- !u!70 &1325655285
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -308,8 +311,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -11866023
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8304732774684738229
@@ -401,5 +404,5 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 5984833452320642704}
   m_maskType: 0
-  _SortingLayerID: 0
+  _SortingLayerID: -11866023
   _SortingOrder: 0

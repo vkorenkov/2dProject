@@ -4,24 +4,36 @@ using UnityEngine.UI;
 
 public class Output : MonoBehaviour
 {
+    [SerializeField] Transform hudPosition;
     /// <summary>
     /// Текст вывода здоровья
     /// </summary>
     [SerializeField] public TextMeshPro healthCount;
+    /// <summary>
+    /// Текст вывода количетва снарядов
+    /// </summary>
+    [SerializeField] public TextMeshPro projectileCount;
     /// <summary>
     /// Свойство поворота персонажа
     /// </summary>
     Quaternion RotationY
     {
         // Воздващает поворот текста
-        get => new Quaternion(healthCount.transform.rotation.x, 0, healthCount.transform.rotation.z, healthCount.transform.rotation.w);
+        get => Quaternion.identity;
     }
 
     private void Update()
     {
+        if(hudPosition) transform.position = hudPosition.position;
+
         // Положение и поворот тектста в разивисимости от поворота персонажа
-        healthCount.transform.rotation = transform.rotation.y < 0 ?
-            RotationY : new Quaternion();
+        if (healthCount) healthCount.transform.rotation = TextRotation();
+        if (projectileCount) projectileCount.transform.rotation = TextRotation();
+    }
+
+    Quaternion TextRotation()
+    {
+        return transform.rotation.y < 0 ? RotationY : new Quaternion();
     }
 
     /// <summary>
@@ -31,6 +43,15 @@ public class Output : MonoBehaviour
     public void OutputHealthCount(string count)
     {
         healthCount.text = count;
+    }
+
+    /// <summary>
+    /// Метод вывода здоровья на экран
+    /// </summary>
+    /// <param name="count"></param>
+    public void OutputProjectilesCount(string count)
+    {
+        projectileCount.text = count;
     }
 
     /// <summary>

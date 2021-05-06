@@ -31,14 +31,14 @@ public class HealthManager : MonoBehaviour
     /// <summary>
     /// Поле вывода информации на экран
     /// </summary>
-    Output output;
+    [SerializeField] Output output;
 
     [SerializeField] bool godMode;
 
     private void Awake()
     {
         isAlive = true; // Назначение состояния персонажа
-        output = GetComponent<Output>(); // Получение компонента вывода
+        //output = GetComponent<Output>(); // Получение компонента вывода
         currentHealth = maxHealth; // Установка значения текущего здоровья
         characterAnimator = GetComponent<Animator>(); // Получение анимаций персонажа
     }

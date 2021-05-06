@@ -11,6 +11,10 @@ public class BulletLauncher : MonoBehaviour
     /// </summary>
     [SerializeField, Range(1, 10), Header("Projectile speed")] 
     float bulletSpeed;
+
+    [SerializeField] Output output;
+
+    [Header("Projectiles count")] public int bulletCont;
     /// <summary>
     /// Объект снаряда
     /// </summary>
@@ -20,11 +24,19 @@ public class BulletLauncher : MonoBehaviour
     /// </summary>
     [SerializeField, Header("Projectile torque")] float bulletTorque;
 
+    private void Update()
+    {
+        output.OutputProjectilesCount($"{bulletCont}");
+    }
+
     /// <summary>
     /// Метод создания экземпляра снаряда
     /// </summary>
     public void Shot()
     {
+        if (bulletCont == 0)
+            return;
+
         // Создание экзкмпляра объекта снаряда
         Rigidbody2D newBullet = Instantiate(bullet, launcher.position, Quaternion.identity).GetComponent<Rigidbody2D>();
         // Присвоение значения вращения снаряда в зависимости от стороны движения

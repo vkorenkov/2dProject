@@ -165,13 +165,15 @@ public class InputCharacter : MonoBehaviour
 
     void ShootActivate()
     {
-        if (shotTimer > shotTime)
+        if (shotTimer > shotTime && bulletLauncher.bulletCont > 0)
         {
             if (Input.GetButton("Fire2"))
             {
                 shotTimer = 0;
 
                 ShotControl();
+
+                bulletLauncher.bulletCont -= 1;
             }
             else
                 shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера
