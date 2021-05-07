@@ -86,12 +86,12 @@ public class InputCharacter : MonoBehaviour
 
             ShootActivate();
 
-            Controls();          
+            Controls();
 
             // Запуск\отключение анимации движения персонажа
             run = Mathf.Abs(horisontalAxis) > 0;
 
-            animator.SetBool("Dash", !move.IsGrounded); // Запуск анимации прыжка
+            animator.SetBool("JumpB", !move.IsGrounded); // Запуск анимации прыжка
         }
         else
             horisontalAxis = 0;
@@ -121,7 +121,10 @@ public class InputCharacter : MonoBehaviour
 
         // считывание нажатия кнопки прыжка
         if (Input.GetButtonDown("Jump"))
+        {
+            animator.SetTrigger("JumpT");
             jump = Vector2.up;
+        }
 
         if (meleeTimer < meleeTime)
         {
@@ -143,7 +146,7 @@ public class InputCharacter : MonoBehaviour
 
     void MeleeControl()
     {
-        meleeAtack.Attack();      
+        meleeAtack.Attack();
 
         animator.SetTrigger("Attack");
     }
