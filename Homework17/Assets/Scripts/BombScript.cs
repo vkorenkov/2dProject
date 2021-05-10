@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BombScript : MonoBehaviour
 {
     /// <summary>
-    /// Твердое тело объекта юомбы
+    /// Твердое тело объекта бомбы
     /// </summary>
     Rigidbody2D bombRb;
     /// <summary>
@@ -34,8 +34,8 @@ public class BombScript : MonoBehaviour
         bombSprite = GetComponent<SpriteRenderer>(); // Получение изображение бомбы
         bombPointEffector = GetComponent<CircleCollider2D>(); // Получение коллайдера бомбы
 
-        bombRb.AddForce(transform.up * Random.Range(2, 5), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
-        bombRb.AddTorque(Random.Range(-2, 2), ForceMode2D.Impulse); // Придание вращения бомбе
+        //bombRb.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
+        //bombRb.AddTorque(Random.Range(-2, 2), ForceMode2D.Impulse); // Придание вращения бомбе
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,7 +46,7 @@ public class BombScript : MonoBehaviour
             explosionPs.Play(); // Запуск эффекта взрыва
             bombSprite.enabled = false; // Отключение изображения бомбы
             bombPointEffector.enabled = true; // включение колайдера эффектора имитации взрыва
-            bombEffector.enabled = true; // // включение эффектора имитации взрыва
+            bombEffector.enabled = true; // включение эффектора имитации взрыва
             bombRb.constraints = RigidbodyConstraints2D.FreezePositionX; // "Заморозка" движения бомбы по оси X
         }
     }

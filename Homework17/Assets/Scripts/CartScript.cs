@@ -7,7 +7,7 @@ public class CartScript : MonoBehaviour
 {
     // Коллекция колес
     List<WheelJoint2D> wheels;
-    bool isCharacterInCart;
+    //bool isCharacterInCart;
 
     private void Start()
     {
@@ -18,9 +18,9 @@ public class CartScript : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // Запуск motor при коллизии с игроком
-        if (collision.transform.tag.ToLower() == "player" && !isCharacterInCart)
+        if (collision.transform.tag.ToLower() == "player"/* && !isCharacterInCart*/)
         {
-            isCharacterInCart = !isCharacterInCart;
+            //isCharacterInCart = !isCharacterInCart;
             RotateWheels(true);
         }
     }
@@ -28,9 +28,9 @@ public class CartScript : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         // Отключение motor при коллизии с игроком
-        if (collision.transform.tag.ToLower() == "player" && isCharacterInCart)
+        if (collision.transform.tag.ToLower() == "player"/* && isCharacterInCart*/)
         {
-            isCharacterInCart = !isCharacterInCart;
+            //isCharacterInCart = !isCharacterInCart;
             RotateWheels(false);
         }
     }

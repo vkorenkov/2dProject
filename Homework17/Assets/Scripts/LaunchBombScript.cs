@@ -15,6 +15,9 @@ public class LaunchBombScript : MonoBehaviour
     /// </summary>
     [SerializeField, Range(1, 3), Header("Bomb max timer value")] 
     float bombLaunchTimerMaxValue = 1;
+
+    [SerializeField] float minLaunchForce = 2;
+    [SerializeField] float maxLaunchForce = 5;
     /// <summary>
     /// Доступность запуска бомбы
     /// </summary>
@@ -35,7 +38,10 @@ public class LaunchBombScript : MonoBehaviour
             if (bombLaunchTimer <= 0)
             {
                 // Создание жкземпляра объекта бомбы
-                Instantiate(bombObj, transform.position, transform.rotation);
+                Rigidbody2D bomb = Instantiate(bombObj, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+
+                bomb.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
+
                 // ОТключение возможноти запуска бомбы
                 canLaunch = false;
                 // Назначение случайного значения таймера бомбы

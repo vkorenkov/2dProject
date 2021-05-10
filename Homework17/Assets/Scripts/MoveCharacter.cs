@@ -17,12 +17,13 @@ public class MoveCharacter : MonoBehaviour
     /// Поле множителя максимальной скорости героя
     /// </summary>
     [SerializeField, Range(0.1f, 5f)] float maxSpeed = 0.1f;
-
     /// <summary>
     /// Поле высоты прыжка главного героя
     /// </summary>
     [SerializeField, Range(0.1f, 3f), Header("Force of jump")] 
     float jumpForce;
+
+    [SerializeField] Transform WarriorTransform;
 
     /// <summary>
     /// Корректировка фиксации прыжка
@@ -60,7 +61,7 @@ public class MoveCharacter : MonoBehaviour
     private void Start()
     {
         // Получение компонента RigitBody героя
-        characterRb = GetComponent<Rigidbody2D>();
+        characterRb = GetComponentInChildren<Rigidbody2D>();
     }
 
     /// <summary>
@@ -69,16 +70,23 @@ public class MoveCharacter : MonoBehaviour
     /// <param name="side"></param>
     public void Move(float side)
     {
-        var absSide = Mathf.Abs(side);
-
         if (side != 0)
-            transform.rotation = RotateSide(side);
+            WarriorTransform.rotation = RotateSide(side);
+
+        #region remember_this
+        //var absSide = Mathf.Abs(side);
+        // Перемещение героя по горизонтали
+        //if (!isPhysicsMove)
+        //    transform.Translate(Vector2.right * absSide * characterSpeed * Time.deltaTime);
+        //else
+        //    characterRb.AddForce(Vector2.right * absSide * characterSpeed);
+        #endregion
 
         // Перемещение героя по горизонтали
         if (!isPhysicsMove)
-            transform.Translate(Vector2.right * absSide * characterSpeed * Time.deltaTime);
+            transform.Translate(Vector2.right * side * characterSpeed * Time.deltaTime);
         else
-            characterRb.AddForce(Vector2.right * absSide * characterSpeed);
+            characterRb.AddForce(Vector2.right * side * characterSpeed);
 
         // Ограничение скорости передвижения персонажа
         characterRb.velocity = new Vector2(Mathf.Clamp(CharacterRbVelocity.x, -maxSpeed, maxSpeed), CharacterRbVelocity.y);
@@ -86,8 +94,8 @@ public class MoveCharacter : MonoBehaviour
 
     Quaternion RotateSide(float side)
     {
-        var rotateY = side > 0 ? Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z) :
-                 Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+        var rotateY = side > 0 ? Quaternion.Euler(WarriorTransform.rotation.x, 0, WarriorTransform.rotation.z) :
+                 Quaternion.Euler(WarriorTransform.rotation.x, 180, WarriorTransform.rotation.z);
 
         return rotateY;
     }

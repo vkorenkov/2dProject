@@ -47,22 +47,22 @@ public class InputCharacter : MonoBehaviour
     private void Awake()
     {
         // Получение анимаций
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         // Инициализация эеземпляра класса передвижения персонажа
         move = GetComponent<MoveCharacter>();
 
-        meleeAtack = GetComponent<MeleeAtack>();
+        meleeAtack = GetComponentInChildren<MeleeAtack>();
 
         // Получение компонента BulletLauncher
-        bulletLauncher = GetComponent<BulletLauncher>();
+        bulletLauncher = GetComponentInChildren<BulletLauncher>();
 
         meleeTimer = meleeTime;
 
         shotTimer = shotTime; // Назначение таймера выстрела
 
         // Подписка на событие изменения доступности управления
-        GetComponent<HealthManager>().ControlEnableEvent += HealthManager_ControlEnableEvent;
+        GetComponentInChildren<HealthManager>().ControlEnableEvent += HealthManager_ControlEnableEvent;
     }
 
     /// <summary>

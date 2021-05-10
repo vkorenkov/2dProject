@@ -24,7 +24,7 @@ public class Output : MonoBehaviour
 
     private void Update()
     {
-        if(hudPosition) transform.position = hudPosition.position;
+        if (hudPosition) transform.position = hudPosition.position;
 
         // Положение и поворот тектста в разивисимости от поворота персонажа
         if (healthCount) healthCount.transform.rotation = TextRotation();
