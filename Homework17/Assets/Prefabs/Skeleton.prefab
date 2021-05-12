@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 66
+  characterAnimator: {fileID: 4393540376049259991}
   destroyTime: 3
   output: {fileID: 3995606062942959659}
   godMode: 0
@@ -219,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97bfb8164a8ee04aa47cc624f1b6afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudPosition: {fileID: 0}
   healthCount: {fileID: 8304732774684738229}
   projectileCount: {fileID: 0}
 --- !u!70 &1325655285

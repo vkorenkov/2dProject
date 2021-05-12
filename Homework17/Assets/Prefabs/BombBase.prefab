@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 587262479440746910}
   - component: {fileID: 587262479440746909}
   - component: {fileID: 587262479440746908}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BombBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,3 +72,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombObj: {fileID: 5467695985199807065, guid: 3ea24e0edab3e584b811479f9d79b939, type: 3}
   bombLaunchTimerMaxValue: 2
+  minLaunchForce: 2
+  maxLaunchForce: 5

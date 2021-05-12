@@ -61,7 +61,8 @@ public class MoveCharacter : MonoBehaviour
     private void Start()
     {
         // Получение компонента RigitBody героя
-        characterRb = GetComponentInChildren<Rigidbody2D>();
+        //characterRb = GetComponentInChildren<Rigidbody2D>();
+        characterRb = GetComponent<Rigidbody2D>();
     }
 
     /// <summary>

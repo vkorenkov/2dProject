@@ -26,7 +26,7 @@ public class HealthManager : MonoBehaviour
     /// <summary>
     /// Компонент аниматор персонажа
     /// </summary>
-    Animator characterAnimator;
+    [SerializeField] Animator characterAnimator;
     [SerializeField, Header("Character Destroy Time")] float destroyTime;
     /// <summary>
     /// Поле вывода информации на экран
@@ -40,7 +40,6 @@ public class HealthManager : MonoBehaviour
         isAlive = true; // Назначение состояния персонажа
         //output = GetComponent<Output>(); // Получение компонента вывода
         currentHealth = maxHealth; // Установка значения текущего здоровья
-        characterAnimator = GetComponent<Animator>(); // Получение анимаций персонажа
     }
 
     private void Update()

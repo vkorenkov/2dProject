@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SpawnChanger : MonoBehaviour
 {
-    [SerializeField] List<Transform> spawns;
     [SerializeField] Transform MainCharacterPosition;
+    [SerializeField] List<Transform> spawns;
     [SerializeField] List<CinemachineVirtualCamera> cameras;
 
     KeyCode keyCode;
@@ -18,32 +18,39 @@ public class SpawnChanger : MonoBehaviour
             switch (keyCode)
             {
                 case KeyCode.Alpha1:
-                    MainCharacterPosition.position = spawns[0].position;
+                    MainCharacterPosition.position = ChangePosition(0);
                     ChangeCameraPriority();
                     cameras[0].Priority = 10;
                     break;
                 case KeyCode.Alpha2:
-                    MainCharacterPosition.position = spawns[1].position;
+                    MainCharacterPosition.position = ChangePosition(1);
                     ChangeCameraPriority();
                     cameras[1].Priority = 10;
                     break;
                 case KeyCode.Alpha3:
-                    MainCharacterPosition.position = spawns[2].position;
+                    MainCharacterPosition.position = ChangePosition(2);
                     ChangeCameraPriority();
                     cameras[2].Priority = 10;
                     break;
                 case KeyCode.Alpha4:
-                    MainCharacterPosition.position = spawns[3].position;
+                    MainCharacterPosition.position = ChangePosition(3);
                     ChangeCameraPriority();
                     cameras[3].Priority = 10;
                     break;
                 case KeyCode.Alpha5:
-                    MainCharacterPosition.position = spawns[4].position;
+                    MainCharacterPosition.position = ChangePosition(4);
                     ChangeCameraPriority();
                     cameras[4].Priority = 10;
                     break;
             }
+
+            keyCode = default;
         }
+    }
+
+    Vector2 ChangePosition(int spawnNumber)
+    {
+        return new Vector2(spawns[spawnNumber].position.x, spawns[spawnNumber].position.y);
     }
 
     void OnGUI()
