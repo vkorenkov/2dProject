@@ -1,7 +1,9 @@
+using Cinemachine;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    [SerializeField] bool isPlayer;
     /// <summary>
     /// ƒелегат передачи данных о состо€нии персонажа
     /// </summary>
@@ -64,7 +66,10 @@ public class HealthManager : MonoBehaviour
 
         // ”словие при котором отнимаетс€ все доступное здоровье персонажа
         if (totaldamage)
+        {
             currentHealth -= currentHealth;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
 
         // ¬ычитание здоровь€ персонажа в соответствии с уроном
         currentHealth -= damage;
@@ -75,7 +80,11 @@ public class HealthManager : MonoBehaviour
         // ƒействи€ при "смерти" персонажа
         if (!isAlive)
         {
-            ControlEnableEvent?.Invoke(isAlive); // ¬ызов событи€ изменени€ доступности управлени€ в соответствии с состо€нием персонажа
+            if (isPlayer)
+            {
+                ControlEnableEvent?.Invoke(isAlive); // ¬ызов событи€ изменени€ доступности управлени€ в соответствии с состо€нием персонажа
+                Camera.main.GetComponent<CinemachineBrain>().enabled = false;
+            }
 
             // ќтключение всех анимаций
             DeactivatedAnimations();
