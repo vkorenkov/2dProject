@@ -41,19 +41,16 @@ public class SpawnChanger : MonoBehaviour
 
     public void ChangePosition(int spawnNumber)
     {
-        if (canChangeCamera)
-        {
-            MainCharacterPosition.position = new Vector2(spawns[spawnNumber].position.x, spawns[spawnNumber].position.y);
-            ChangeCameraPriority();
-            cameras[spawnNumber].Priority = 10;
-        }
+        MainCharacterPosition.position = spawns[spawnNumber].position;
+        ChangeCameraPriority();
+        cameras[spawnNumber].Priority = 10;
     }
 
     void OnGUI()
     {
         Event key = Event.current;
 
-        if(key.isKey)
+        if (key.isKey)
         {
             keyCode = key.keyCode;
         }
@@ -61,7 +58,7 @@ public class SpawnChanger : MonoBehaviour
 
     private void ChangeCameraPriority()
     {
-        foreach(var c in cameras)
+        foreach (var c in cameras)
         {
             c.Priority = 1;
         }

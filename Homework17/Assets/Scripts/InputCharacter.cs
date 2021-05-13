@@ -204,16 +204,12 @@ public class InputCharacter : MonoBehaviour
         // Перещение объекта при пересечении правой границы экрана
         if (transform.position.x > max.x)
         {
-            SpawnChanger.canChangeCamera = true;
             spawnChanger.ChangePosition(currentCM + 1);
-            SpawnChanger.canChangeCamera = false;
         }
         // Перещение объекта при пересечении левой границы экрана
         if (transform.position.x < min.x)
         {
-            SpawnChanger.canChangeCamera = true;
             spawnChanger.ChangePosition(currentCM - 1);
-            SpawnChanger.canChangeCamera = false;
         }
     }
 }
