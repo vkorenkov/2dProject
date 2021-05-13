@@ -8,6 +8,7 @@ public class SpawnChanger : MonoBehaviour
     [SerializeField] Transform MainCharacterPosition;
     [SerializeField] List<Transform> spawns;
     [SerializeField] List<CinemachineVirtualCamera> cameras;
+    public static bool canChangeCamera;
 
     KeyCode keyCode;
 
@@ -18,29 +19,19 @@ public class SpawnChanger : MonoBehaviour
             switch (keyCode)
             {
                 case KeyCode.Alpha1:
-                    MainCharacterPosition.position = ChangePosition(0);
-                    ChangeCameraPriority();
-                    cameras[0].Priority = 10;
+                    ChangePosition(0);
                     break;
                 case KeyCode.Alpha2:
-                    MainCharacterPosition.position = ChangePosition(1);
-                    ChangeCameraPriority();
-                    cameras[1].Priority = 10;
+                    ChangePosition(1);
                     break;
                 case KeyCode.Alpha3:
-                    MainCharacterPosition.position = ChangePosition(2);
-                    ChangeCameraPriority();
-                    cameras[2].Priority = 10;
+                    ChangePosition(2);
                     break;
                 case KeyCode.Alpha4:
-                    MainCharacterPosition.position = ChangePosition(3);
-                    ChangeCameraPriority();
-                    cameras[3].Priority = 10;
+                    ChangePosition(3);
                     break;
                 case KeyCode.Alpha5:
-                    MainCharacterPosition.position = ChangePosition(4);
-                    ChangeCameraPriority();
-                    cameras[4].Priority = 10;
+                    ChangePosition(4);
                     break;
             }
 
@@ -48,9 +39,14 @@ public class SpawnChanger : MonoBehaviour
         }
     }
 
-    Vector2 ChangePosition(int spawnNumber)
+    public void ChangePosition(int spawnNumber)
     {
-        return new Vector2(spawns[spawnNumber].position.x, spawns[spawnNumber].position.y);
+        if (canChangeCamera)
+        {
+            MainCharacterPosition.position = new Vector2(spawns[spawnNumber].position.x, spawns[spawnNumber].position.y);
+            ChangeCameraPriority();
+            cameras[spawnNumber].Priority = 10;
+        }
     }
 
     void OnGUI()

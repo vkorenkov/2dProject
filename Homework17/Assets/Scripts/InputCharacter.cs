@@ -6,6 +6,12 @@ public class InputCharacter : MonoBehaviour
 {
     bool run;
 
+    Camera mainCamera;
+
+    public static int currentCM;
+
+    [SerializeField] SpawnChanger spawnChanger;
+
     /// <summary>
     /// Поле компонента Animator главного героя
     /// </summary>
@@ -46,6 +52,8 @@ public class InputCharacter : MonoBehaviour
 
     private void Awake()
     {
+        mainCamera = Camera.main;
+
         // Получение анимаций
         animator = GetComponentInChildren<Animator>();
 
@@ -75,7 +83,7 @@ public class InputCharacter : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
         if (isControlEnable)
         {
             shotTimer += Time.deltaTime; // Изменение таймера
@@ -105,6 +113,11 @@ public class InputCharacter : MonoBehaviour
         move.Jump(jump);
         // Переопределение вектора прыжка
         jump = new Vector2();
+    }
+
+    private void LateUpdate()
+    {
+        CheckPosition();
     }
 
     /// <summary>
@@ -180,6 +193,27 @@ public class InputCharacter : MonoBehaviour
             }
             else
                 shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера
+        }
+    }
+
+    public void CheckPosition()
+    {
+        Vector2 min = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
+        Vector2 max = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
+
+        // Перещение объекта при пересечении правой границы экрана
+        if (transform.position.x > max.x)
+        {
+            SpawnChanger.canChangeCamera = true;
+            spawnChanger.ChangePosition(currentCM + 1);
+            SpawnChanger.canChangeCamera = false;
+        }
+        // Перещение объекта при пересечении левой границы экрана
+        if (transform.position.x < min.x)
+        {
+            SpawnChanger.canChangeCamera = true;
+            spawnChanger.ChangePosition(currentCM - 1);
+            SpawnChanger.canChangeCamera = false;
         }
     }
 }
