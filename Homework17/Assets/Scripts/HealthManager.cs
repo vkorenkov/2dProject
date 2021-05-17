@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class HealthManager : MonoBehaviour
     /// Событие изменения доступности управления
     /// </summary>
     public event ControlDel ControlEnableEvent;
+    public event ControlDel DeathEvent;
     /// <summary>
     /// Максимальное количество здоровья персонажа
     /// </summary>
@@ -20,7 +22,7 @@ public class HealthManager : MonoBehaviour
     /// <summary>
     /// Текущее значение здоровья персонажа
     /// </summary>
-    float currentHealth;
+    public float currentHealth;
     /// <summary>
     /// Состояние персонажа
     /// </summary>
@@ -29,6 +31,9 @@ public class HealthManager : MonoBehaviour
     /// Компонент аниматор персонажа
     /// </summary>
     [SerializeField] Animator characterAnimator;
+
+    [SerializeField] float damageCoolDown;
+
     [SerializeField, Header("Character Destroy Time")] float destroyTime;
     /// <summary>
     /// Поле вывода информации на экран
@@ -37,10 +42,11 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] bool godMode;
 
+    bool isDamaged;
+
     private void Awake()
     {
         isAlive = true; // Назначение состояния персонажа
-        //output = GetComponent<Output>(); // Получение компонента вывода
         currentHealth = maxHealth; // Установка значения текущего здоровья
     }
 
@@ -61,6 +67,9 @@ public class HealthManager : MonoBehaviour
     /// <param name="damage"></param>
     public void TakeDamage(bool totaldamage, float damage = 0)
     {
+        if (isDamaged)
+            return;
+
         if (godMode)
             return;
 
@@ -74,6 +83,8 @@ public class HealthManager : MonoBehaviour
         // Вычитание здоровья персонажа в соответствии с уроном
         currentHealth -= damage;
 
+        isDamaged = true;
+
         // получение состояния персонажа
         isAlive = CheckCharacterHealth();
 
@@ -82,7 +93,8 @@ public class HealthManager : MonoBehaviour
         {
             if (isPlayer)
             {
-                ControlEnableEvent?.Invoke(isAlive); // Вызов события изменения доступности управления в соответствии с состоянием персонажа
+                DeathEvent?.Invoke(isAlive); // Вызов события изменения доступности управления в соответствии с состоянием персонажа
+                ControlEnableEvent.Invoke(isAlive);
                 Camera.main.GetComponent<CinemachineBrain>().enabled = false;
             }
 
@@ -90,13 +102,34 @@ public class HealthManager : MonoBehaviour
             DeactivatedAnimations();
 
             // Вызов анимации "смерти" персонажа
-            characterAnimator.SetBool("Dead", !isAlive);
+            characterAnimator.SetTrigger("DeathT");
 
             // Изменение активности коллайдера в зависимости от состояния персонажа
-            GetComponent<Collider2D>().enabled = isAlive;
+            foreach(var c in GetComponents<Collider2D>())
+            {
+                c.enabled = isAlive;
+            }
+
             // Уничтожение объекта персонажа
             Destroy(gameObject, destroyTime);
         }
+        else
+            StartCoroutine(DamageCoolDown());
+    }
+
+    IEnumerator DamageCoolDown()
+    {
+        characterAnimator.SetTrigger("HurtT");
+
+        if (isPlayer) ControlEnableEvent.Invoke(false);
+
+        yield return new WaitForSeconds(damageCoolDown);
+
+        if (isPlayer) ControlEnableEvent.Invoke(true);
+
+        isDamaged = false;
+
+        StopCoroutine(DamageCoolDown());
     }
 
     /// <summary>
@@ -106,7 +139,12 @@ public class HealthManager : MonoBehaviour
     {
         foreach (var a in characterAnimator.parameters)
         {
-            characterAnimator.SetBool(a.name, false);
+            if (a.type == AnimatorControllerParameterType.Float)
+                characterAnimator.SetFloat(a.name, 0);
+            if (a.type == AnimatorControllerParameterType.Int)
+                characterAnimator.SetFloat(a.name, 0);
+            if (a.type == AnimatorControllerParameterType.Bool)
+                characterAnimator.SetBool(a.name, false);
         }
     }
 

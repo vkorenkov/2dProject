@@ -7,12 +7,16 @@ public class SliderScript : MonoBehaviour
     private JointMotor2D sliderMotor;
     [SerializeField] bool isFullMotor;
     [SerializeField] bool isMovePlatform;
+    [SerializeField] bool isDoor;
+    [SerializeField] bool isCollectDoor;
+    [SerializeField] bool isKilleEnemiesDoor;
     /// <summary>
     /// Поле соединения
     /// </summary>
     [SerializeField] SliderJoint2D slider;
     [SerializeField] float motorForce = 5;
-    Transform parent;
+    [SerializeField] int collectedObjectCount;
+    [SerializeField] int killedEnemiesCount;
 
     private void Awake()
     {
@@ -41,30 +45,58 @@ public class SliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isMovePlatform && collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+        if (!isDoor)
         {
-            if (!isFullMotor)
-                // Зпуск движения
-                slider.useMotor = true;
-            else
+            if (!isMovePlatform && collision.CompareTag("Player") || collision.CompareTag("Movable"))
             {
-                sliderMotor.motorSpeed = motorForce * -1;
-                slider.motor = sliderMotor;
+                if (!isFullMotor)
+                    // Зпуск движения
+                    slider.useMotor = true;
+                else
+                {
+                    sliderMotor.motorSpeed = motorForce * -1;
+                    slider.motor = sliderMotor;
+                }
+            }
+        }
+        else
+        {
+            if (collision.CompareTag("Player"))
+            {
+                if (isCollectDoor)
+                {
+                    if (collision.GetComponent<CollectObjects>().collectedObjectsCount >= collectedObjectCount)
+                    {
+                        collision.GetComponent<CollectObjects>().collectedObjectsCount = 0;
+                        slider.useMotor = false;
+                    }
+                }
+                if (isKilleEnemiesDoor)
+                {
+                    if (collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount)
+                    {
+                        collision.GetComponent<CollectObjects>().killedEnemies = 0;
+                        slider.useMotor = false;
+                    }
+                }
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!isMovePlatform && collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+        if (!isDoor)
         {
-            if (!isFullMotor)
-                // Остановка движения
-                slider.useMotor = false;
-            else
-            {               
-                sliderMotor.motorSpeed = motorForce;
-                slider.motor = sliderMotor;
+            if (!isMovePlatform && collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+            {
+                if (!isFullMotor)
+                    // Остановка движения
+                    slider.useMotor = false;
+                else
+                {
+                    sliderMotor.motorSpeed = motorForce;
+                    slider.motor = sliderMotor;
+                }
             }
         }
     }

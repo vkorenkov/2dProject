@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2964347038727780609}
   - component: {fileID: 2739987761160417636}
   - component: {fileID: 3166374237199532722}
+  - component: {fileID: 2304998809283994446}
   - component: {fileID: 3283866234901336805}
   - component: {fileID: 3283866234901336806}
   m_Layer: 3
@@ -73,9 +74,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcf19db80926554d8d0f299d9bb1190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightLevelChanger: {fileID: 0}
+  leftLevelChanger: {fileID: 0}
+  collect: {fileID: 2304998809283994446}
   shotTime: 0.5
   meleeTime: 0.2
   isControlEnable: 1
+  canCollect: 0
 --- !u!114 &2739987761160417636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,8 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4c22fdeb1b6244b882f0ecd211e418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   maxHealth: 100
   characterAnimator: {fileID: 7464116424954075617}
+  damageCoolDown: 0.5
   destroyTime: 100
   output: {fileID: 2739987761399636826}
   godMode: 0
@@ -105,6 +112,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808d532c715fe2646bc98c1230b13987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2304998809283994446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2739987761160417634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981d8a5531c1f641afe2ea524529f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killedEnemies: 0
+  collectedObjectsCount: 0
 --- !u!50 &3283866234901336805
 Rigidbody2D:
   serializedVersion: 4

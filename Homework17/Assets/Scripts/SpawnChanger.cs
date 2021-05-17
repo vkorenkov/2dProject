@@ -8,7 +8,6 @@ public class SpawnChanger : MonoBehaviour
     [SerializeField] Transform MainCharacterPosition;
     [SerializeField] List<Transform> spawns;
     [SerializeField] List<CinemachineVirtualCamera> cameras;
-    public static bool canChangeCamera;
 
     KeyCode keyCode;
 

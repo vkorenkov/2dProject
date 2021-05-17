@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6718660207959596600}
   - component: {fileID: 6718660207959596601}
   - component: {fileID: 6718660207959596602}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: ActivateTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,6 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateObject: {fileID: 0}
+  isCoroutine: 0
   activeteTime: 1
   deactivationTime: 0.8
-  isCoroutine: 0

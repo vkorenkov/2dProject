@@ -8,9 +8,15 @@ public class InputCharacter : MonoBehaviour
 
     Camera mainCamera;
 
-    public static int currentCM;
+    public static int currentLevel;
 
-    [SerializeField] SpawnChanger spawnChanger;
+    [SerializeField] Transform rightLevelChanger;
+    [SerializeField] Transform leftLevelChanger;
+
+    [SerializeField] CollectObjects collect;
+
+    public static Vector2 leftCameraLine;
+    public static Vector2 rightCameraLine;
 
     /// <summary>
     /// Поле компонента Animator главного героя
@@ -77,13 +83,17 @@ public class InputCharacter : MonoBehaviour
     /// Обработчик события изменения доступности управления
     /// </summary>
     /// <param name="isAlive"></param>
-    private void HealthManager_ControlEnableEvent(bool isAlive)
+    private void HealthManager_ControlEnableEvent(bool isControlEnable)
     {
-        isControlEnable = isAlive;
+        this.isControlEnable = isControlEnable;
+        run = isControlEnable;
+        animator.SetBool("JumpB", false);
     }
 
     void Update()
-    {        
+    {
+        SetChangers();
+
         if (isControlEnable)
         {
             shotTimer += Time.deltaTime; // Изменение таймера
@@ -96,13 +106,14 @@ public class InputCharacter : MonoBehaviour
 
             Controls();
 
-            // Запуск\отключение анимации движения персонажа
             run = Mathf.Abs(horisontalAxis) > 0;
 
             animator.SetBool("JumpB", !move.IsGrounded); // Запуск анимации прыжка
         }
         else
             horisontalAxis = 0;
+
+        animator.SetBool("Run", run); // Запуск анимации бега
     }
 
     void FixedUpdate()
@@ -115,11 +126,6 @@ public class InputCharacter : MonoBehaviour
         jump = new Vector2();
     }
 
-    private void LateUpdate()
-    {
-        CheckPosition();
-    }
-
     /// <summary>
     /// Метод передвижения персонажа
     /// </summary>
@@ -127,10 +133,10 @@ public class InputCharacter : MonoBehaviour
     {
         animator.speed = 1f;
 
-        animator.SetBool("Run", run); // Запуск анимации бега
-
         // Считывание нажатия кнопок направления
         horisontalAxis = Input.GetAxis("Horizontal");
+
+        animator.SetBool("Run", run); // Запуск анимации бега
 
         // считывание нажатия кнопки прыжка
         if (Input.GetButtonDown("Jump"))
@@ -196,20 +202,12 @@ public class InputCharacter : MonoBehaviour
         }
     }
 
-    public void CheckPosition()
+    public void SetChangers()
     {
-        Vector2 min = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 max = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
+        leftCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(0, 0.5f));
+        rightCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(1, 0.5f));
 
-        // Перещение объекта при пересечении правой границы экрана
-        if (transform.position.x > max.x)
-        {
-            spawnChanger.ChangePosition(currentCM + 1);
-        }
-        // Перещение объекта при пересечении левой границы экрана
-        if (transform.position.x < min.x)
-        {
-            spawnChanger.ChangePosition(currentCM - 1);
-        }
+        leftLevelChanger.position = leftCameraLine;
+        rightLevelChanger.position = rightCameraLine;
     }
 }

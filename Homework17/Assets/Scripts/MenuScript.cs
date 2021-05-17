@@ -8,7 +8,7 @@ public class MenuScript : MonoBehaviour
     private void Awake()
     {
         // Подписка на событие изменения доступности управления
-        GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>().ControlEnableEvent += MenuScript_ControlEnableEvent;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>().DeathEvent += MenuScript_ControlEnableEvent;
     }
 
     private void MenuScript_ControlEnableEvent(bool isAlive)
