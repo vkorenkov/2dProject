@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3005165107939218500}
   - component: {fileID: 3005165107939218499}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BeerBonusObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 18074998377757996}
   - component: {fileID: 1010783479935254755}
   - component: {fileID: 4262340846498143359}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: FoamEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4865,7 +4865,7 @@ GameObject:
   - component: {fileID: 5919754836193310184}
   - component: {fileID: 6524298988977614007}
   - component: {fileID: 6150812170648195309}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BeerBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4996,7 +4996,7 @@ GameObject:
   - component: {fileID: 2504539284578206194}
   - component: {fileID: 7516795275035817479}
   - component: {fileID: 8364108081320246418}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: GetBonusEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9859,7 +9859,7 @@ GameObject:
   - component: {fileID: 7149883484969897950}
   - component: {fileID: 377270683188501953}
   - component: {fileID: 2905353547523209237}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}

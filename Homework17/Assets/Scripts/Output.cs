@@ -33,7 +33,7 @@ public class Output : MonoBehaviour
 
     Quaternion TextRotation()
     {
-        return transform.rotation.y < 0 ? RotationY : new Quaternion();
+        return transform.rotation.y < 0 || transform.rotation.y > 0 ? RotationY : new Quaternion();
     }
 
     /// <summary>

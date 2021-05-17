@@ -18,19 +18,34 @@ public class SpawnChanger : MonoBehaviour
             switch (keyCode)
             {
                 case KeyCode.Alpha1:
-                    ChangePosition(0);
+                    ChangePosition(0, 0);
                     break;
                 case KeyCode.Alpha2:
-                    ChangePosition(1);
+                    ChangePosition(1, 0);
                     break;
                 case KeyCode.Alpha3:
-                    ChangePosition(2);
+                    ChangePosition(2, 1);
                     break;
                 case KeyCode.Alpha4:
-                    ChangePosition(3);
+                    ChangePosition(3, 1);
                     break;
                 case KeyCode.Alpha5:
-                    ChangePosition(4);
+                    ChangePosition(4, 2);
+                    break;
+                case KeyCode.Alpha6:
+                    ChangePosition(5, 2);
+                    break;
+                case KeyCode.Alpha7:
+                    ChangePosition(6, 3);
+                    break;
+                case KeyCode.Alpha8:
+                    ChangePosition(7, 3);
+                    break;
+                case KeyCode.Alpha9:
+                    ChangePosition(8, 4);
+                    break;
+                case KeyCode.Alpha0:
+                    ChangePosition(9, 4);
                     break;
             }
 
@@ -38,11 +53,11 @@ public class SpawnChanger : MonoBehaviour
         }
     }
 
-    public void ChangePosition(int spawnNumber)
+    public void ChangePosition(int spawnNumber, int cameraNumber)
     {
         MainCharacterPosition.position = spawns[spawnNumber].position;
         ChangeCameraPriority();
-        cameras[spawnNumber].Priority = 10;
+        cameras[cameraNumber].Priority = 10;
     }
 
     void OnGUI()

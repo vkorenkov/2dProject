@@ -44,8 +44,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0030308536, y: 0.017118786}
-  m_Size: {x: 0.12812242, y: 0.017892508}
+  m_Offset: {x: 0.003030855, y: 0.028504446}
+  m_Size: {x: 0.12812242, y: 0.040663887}
   m_Direction: 1
 --- !u!1 &4393540376049259990
 GameObject:
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 3397255638047971854}
   m_Layer: 12
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,7 +177,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &4617178371470983584
 MonoBehaviour:
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   maxHealth: 66
+  currentHealth: 0
   characterAnimator: {fileID: 4393540376049259991}
   damageCoolDown: 0
   destroyTime: 3

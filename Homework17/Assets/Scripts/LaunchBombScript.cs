@@ -7,15 +7,17 @@ public class LaunchBombScript : MonoBehaviour
     /// </summary>
     float bombLaunchTimer;
 
-    [SerializeField] Transform launcher; 
+    [SerializeField] Transform launcher;
     /// <summary>
     /// Объект бомбы
     /// </summary>
-    [SerializeField, Header("Bomb game object")] GameObject bombObj;
+    [SerializeField, Header("Spawn game object")] GameObject bombObj;
+
+    [SerializeField] bool isRandom;
     /// <summary>
     /// Максимальное значение таймера запуска бомбы
     /// </summary>
-    [SerializeField, Range(1, 3), Header("Bomb max timer value")] 
+    [SerializeField, Range(0, 3), Header("Spawn max timer value")]
     float bombLaunchTimerMaxValue = 1;
 
     [SerializeField] float minLaunchForce = 2;
@@ -28,7 +30,7 @@ public class LaunchBombScript : MonoBehaviour
     private void Start()
     {
         // Назначение случайного времени таймера запука бомбы
-        bombLaunchTimer = Random.Range(0.5f, bombLaunchTimerMaxValue); 
+        bombLaunchTimer = Random.Range(0, bombLaunchTimerMaxValue);
     }
 
     private void Update()
@@ -39,10 +41,17 @@ public class LaunchBombScript : MonoBehaviour
 
             if (bombLaunchTimer <= 0)
             {
-                // Создание жкземпляра объекта бомбы
-                Rigidbody2D bomb = Instantiate(bombObj, launcher.position, transform.rotation).GetComponent<Rigidbody2D>();
+                float spawnPosition = 0;
 
-                bomb.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
+                if (isRandom)
+                    spawnPosition = Random.Range(GetComponent<BoxCollider2D>().bounds.min.x, GetComponent<BoxCollider2D>().bounds.max.x);
+                else
+                    spawnPosition = launcher.position.x;
+
+                // Создание жкземпляра объекта бомбы
+                Rigidbody2D swpawnObj = Instantiate(bombObj, new Vector3(spawnPosition, launcher.position.y), Quaternion.identity).GetComponent<Rigidbody2D>();
+
+                swpawnObj.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
 
                 // ОТключение возможноти запуска бомбы
                 canLaunch = false;

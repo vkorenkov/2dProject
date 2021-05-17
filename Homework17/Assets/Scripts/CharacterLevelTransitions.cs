@@ -31,13 +31,9 @@ public class CharacterLevelTransitions : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             if (isBack)
-            {
                 InputCharacter.currentLevel -= 1;
-            }
             else
-            {
                 InputCharacter.currentLevel += 1;
-            }
 
             ChangeCamera(InputCharacter.currentLevel);
 

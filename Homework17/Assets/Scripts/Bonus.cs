@@ -78,6 +78,6 @@ public class Bonus : MonoBehaviour
     {
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
-        Destroy(gameObject, destroyTime);
+        Destroy(gameObject.transform.parent.gameObject, destroyTime);
     }
 }
