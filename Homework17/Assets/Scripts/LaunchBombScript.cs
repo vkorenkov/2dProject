@@ -6,6 +6,8 @@ public class LaunchBombScript : MonoBehaviour
     /// Таймер запуска бомбы
     /// </summary>
     float bombLaunchTimer;
+
+    [SerializeField] Transform launcher; 
     /// <summary>
     /// Объект бомбы
     /// </summary>
@@ -38,7 +40,7 @@ public class LaunchBombScript : MonoBehaviour
             if (bombLaunchTimer <= 0)
             {
                 // Создание жкземпляра объекта бомбы
-                Rigidbody2D bomb = Instantiate(bombObj, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+                Rigidbody2D bomb = Instantiate(bombObj, launcher.position, transform.rotation).GetComponent<Rigidbody2D>();
 
                 bomb.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
 

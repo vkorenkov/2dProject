@@ -10,6 +10,7 @@ public class Bonus : MonoBehaviour
     [SerializeField] float healthRecovery;
     [SerializeField] int projectileRecovery;
     [SerializeField] ParticleSystem getBonusEffect;
+    [SerializeField] Animation DescriptionAnimation;
     Collider2D playerCollision;
 
     [SerializeField] TextMeshPro bonusDescription;
@@ -34,8 +35,12 @@ public class Bonus : MonoBehaviour
         {
             if (isBonus)
             {
-                playerCollision = collision;
-                bonusDescription.gameObject.SetActive(true);
+                if (bonusDescription)
+                {
+                    playerCollision = collision;
+                    DescriptionAnimation["DescriptionAnimation"].speed = 1;
+                    DescriptionAnimation.Play();
+                }
             }
 
             if (isHealth)
@@ -59,7 +64,13 @@ public class Bonus : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerCollision = null;
-            bonusDescription.gameObject.SetActive(false);
+
+            if (bonusDescription)
+            {
+                DescriptionAnimation["DescriptionAnimation"].time = DescriptionAnimation["DescriptionAnimation"].length;
+                DescriptionAnimation["DescriptionAnimation"].speed = -1;
+                DescriptionAnimation.Play();
+            }
         }
     }
 

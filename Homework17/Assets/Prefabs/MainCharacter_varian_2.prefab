@@ -80,7 +80,6 @@ MonoBehaviour:
   shotTime: 0.5
   meleeTime: 0.2
   isControlEnable: 1
-  canCollect: 0
 --- !u!114 &2739987761160417636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 1
   maxHealth: 100
+  currentHealth: 0
   characterAnimator: {fileID: 7464116424954075617}
   damageCoolDown: 0.5
   destroyTime: 100
@@ -959,7 +959,7 @@ MonoBehaviour:
   launcher: {fileID: 2739987761877726478}
   bulletSpeed: 2.5
   output: {fileID: 2739987761399636826}
-  bulletCont: 5
+  bulletCont: 2
   bullet: {fileID: 1760164494302353223, guid: 10488563f3903dc47adbe9ea2255b9b6, type: 3}
   bulletTorque: 20
 --- !u!114 &3317790595550801754

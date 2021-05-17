@@ -738,8 +738,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFullMotor: 1
   isMovePlatform: 1
+  isDoor: 0
+  isCollectDoor: 0
+  isKilleEnemiesDoor: 0
   slider: {fileID: 8794228295686626082}
   motorForce: 1
+  collectedObjectCount: 0
+  killedEnemiesCount: 0
 --- !u!50 &8794228295686626081
 Rigidbody2D:
   serializedVersion: 4
@@ -774,7 +779,7 @@ SliderJoint2D:
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 8.401123, y: 7.6160517}
   m_AutoConfigureAngle: 0

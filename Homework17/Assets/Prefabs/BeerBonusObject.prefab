@@ -28,6 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6892810362509580398}
   - {fileID: 1434464323931727312}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +61,7 @@ GameObject:
   - component: {fileID: 1010783479935254755}
   - component: {fileID: 4262340846498143359}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: FoamEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +79,7 @@ Transform:
   m_LocalScale: {x: 0.10929, y: 0.10929, z: 0.10929}
   m_Children: []
   m_Father: {fileID: 1434464323931727312}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -105, y: 0, z: 0}
 --- !u!198 &1010783479935254755
 ParticleSystem:
@@ -153,7 +154,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -4824,9 +4825,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -11866023
+  m_SortingLayer: 5
+  m_SortingOrder: 10
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4842,7 +4843,7 @@ ParticleSystemRenderer:
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
-  m_ApplyActiveColorSpace: 1
+  m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
@@ -4882,11 +4883,10 @@ Transform:
   m_LocalPosition: {x: 1.917, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
-  - {fileID: 6892810362509580398}
   - {fileID: 2504539284578206194}
   - {fileID: 18074998377757996}
   m_Father: {fileID: 3005165107939218500}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5919754836193310184
 SpriteRenderer:
@@ -4983,6 +4983,7 @@ MonoBehaviour:
   healthRecovery: 0
   projectileRecovery: 0
   getBonusEffect: {fileID: 7516795275035817479}
+  DescriptionAnimation: {fileID: 2905353547523209237}
   bonusDescription: {fileID: 377270683188501953}
 --- !u!1 &6501993950286761606
 GameObject:
@@ -4996,7 +4997,7 @@ GameObject:
   - component: {fileID: 7516795275035817479}
   - component: {fileID: 8364108081320246418}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: GetBonusEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5014,7 +5015,7 @@ Transform:
   m_LocalScale: {x: 0.10929, y: 0.10929, z: 0.10929}
   m_Children: []
   m_Father: {fileID: 1434464323931727312}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -105, y: 0, z: 0}
 --- !u!198 &7516795275035817479
 ParticleSystem:
@@ -5089,7 +5090,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -9818,9 +9819,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -11866023
+  m_SortingLayer: 5
+  m_SortingOrder: 10
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9836,7 +9837,7 @@ ParticleSystemRenderer:
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
-  m_ApplyActiveColorSpace: 1
+  m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
@@ -9857,13 +9858,14 @@ GameObject:
   - component: {fileID: 6892810362509580398}
   - component: {fileID: 7149883484969897950}
   - component: {fileID: 377270683188501953}
+  - component: {fileID: 2905353547523209237}
   m_Layer: 0
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6892810362509580398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9871,16 +9873,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7129508161445685204}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06482367, y: 0.06482367, z: 0.06482367}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 1434464323931727312}
+  m_Father: {fileID: 3005165107939218500}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.555}
+  m_AnchoredPosition: {x: 1.917, y: -0.2775}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7149883484969897950
@@ -9953,8 +9955,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278205951
+  m_fontColor: {r: 1, g: 0.24020335, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10015,3 +10017,19 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: -11866023
   _SortingOrder: 0
+--- !u!111 &2905353547523209237
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129508161445685204}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a14ecf639956a1549b8635fcd5cdf820, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a14ecf639956a1549b8635fcd5cdf820, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
