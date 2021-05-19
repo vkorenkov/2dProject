@@ -15,6 +15,8 @@ public class HealthManager : MonoBehaviour
     /// </summary>
     public event ControlDel ControlEnableEvent;
     public event ControlDel DeathEvent;
+
+    [SerializeField] bool godMode;
     /// <summary>
     /// Максимальное количество здоровья персонажа
     /// </summary>
@@ -26,7 +28,7 @@ public class HealthManager : MonoBehaviour
     /// <summary>
     /// Состояние персонажа
     /// </summary>
-    bool isAlive;
+    public bool isAlive;
     /// <summary>
     /// Компонент аниматор персонажа
     /// </summary>
@@ -39,8 +41,6 @@ public class HealthManager : MonoBehaviour
     /// Поле вывода информации на экран
     /// </summary>
     [SerializeField] Output output;
-
-    [SerializeField] bool godMode;
 
     bool isDamaged;
 
@@ -83,7 +83,7 @@ public class HealthManager : MonoBehaviour
         // Вычитание здоровья персонажа в соответствии с уроном
         currentHealth -= damage;
 
-        isDamaged = true;
+        if(isPlayer) isDamaged = true;
 
         // получение состояния персонажа
         isAlive = CheckCharacterHealth();
@@ -105,7 +105,7 @@ public class HealthManager : MonoBehaviour
             characterAnimator.SetTrigger("DeathT");
 
             // Изменение активности коллайдера в зависимости от состояния персонажа
-            foreach(var c in GetComponents<Collider2D>())
+            foreach (var c in GetComponents<Collider2D>())
             {
                 c.enabled = isAlive;
             }
@@ -114,20 +114,22 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject, destroyTime);
         }
         else
+        {
             StartCoroutine(DamageCoolDown());
+        }
     }
 
     IEnumerator DamageCoolDown()
     {
         characterAnimator.SetTrigger("HurtT");
 
-        if (isPlayer) ControlEnableEvent.Invoke(false);
+        ControlEnableEvent.Invoke(false);
 
         yield return new WaitForSeconds(damageCoolDown);
 
-        if (isPlayer) ControlEnableEvent.Invoke(true);
+        ControlEnableEvent.Invoke(true);
 
-        isDamaged = false;
+        if(isPlayer) isDamaged = false;
 
         StopCoroutine(DamageCoolDown());
     }

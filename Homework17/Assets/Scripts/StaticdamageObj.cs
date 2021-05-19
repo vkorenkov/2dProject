@@ -10,16 +10,21 @@ public class StaticdamageObj : MonoBehaviour
     /// Урон наносимый объектом
     /// </summary>
     [SerializeField] float damage;
+    [SerializeField] float pushForce;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isTriggerObj && collision.gameObject.tag.ToLower() == "player")
+        if (!isTriggerObj && collision.gameObject.CompareTag("Player"))
+        {
+            var playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            playerRb.AddForce((playerRb.transform.position - transform.position).normalized * pushForce, ForceMode2D.Impulse);
             Damage(collision, damage);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isTriggerObj && collision.gameObject.tag.ToLower() == "player")
+        if (isTriggerObj && collision.CompareTag("Player"))
             Damage(collision, damage);
     }
 

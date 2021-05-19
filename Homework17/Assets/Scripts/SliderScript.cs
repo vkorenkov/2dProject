@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SliderScript : MonoBehaviour
@@ -17,6 +16,7 @@ public class SliderScript : MonoBehaviour
     [SerializeField] float motorForce = 5;
     [SerializeField] int collectedObjectCount;
     [SerializeField] int killedEnemiesCount;
+    [SerializeField] TextMeshPro message;
 
     private void Awake()
     {
@@ -69,6 +69,12 @@ public class SliderScript : MonoBehaviour
                     {
                         collision.GetComponent<CollectObjects>().collectedObjectsCount = 0;
                         slider.useMotor = false;
+                        message.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        message.text = $"You must collect {collectedObjectCount} beer to get through!";
+                        AnimationPlayback(true);
                     }
                 }
                 if (isKilleEnemiesDoor)
@@ -87,7 +93,7 @@ public class SliderScript : MonoBehaviour
     {
         if (!isDoor)
         {
-            if (!isMovePlatform && collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+            if (!isMovePlatform && collision.CompareTag("Player") || collision.CompareTag("Movable"))
             {
                 if (!isFullMotor)
                     // Остановка движения
@@ -99,5 +105,27 @@ public class SliderScript : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            if (collision.CompareTag("Player"))
+            {
+                AnimationPlayback(false);
+            }
+        }
+    }
+
+    void AnimationPlayback(bool side)
+    {
+        var DescriptionAnimation = message.GetComponent<Animation>();
+        int speed = 1;
+
+        if (!side)
+        {
+            speed *= -1;
+            DescriptionAnimation["DescriptionAnimation"].time = DescriptionAnimation["DescriptionAnimation"].length;
+        }
+
+        DescriptionAnimation["DescriptionAnimation"].speed = speed;
+        DescriptionAnimation.Play();
     }
 }

@@ -13,14 +13,8 @@ public class Output : MonoBehaviour
     /// “екст вывода количетва снар€дов
     /// </summary>
     [SerializeField] public TextMeshPro projectileCount;
-    /// <summary>
-    /// —войство поворота персонажа
-    /// </summary>
-    Quaternion RotationY
-    {
-        // ¬оздващает поворот текста
-        get => Quaternion.identity;
-    }
+
+    [SerializeField] public TextMeshPro bonusCount;
 
     private void Update()
     {
@@ -29,11 +23,12 @@ public class Output : MonoBehaviour
         // ѕоложение и поворот тектста в разивисимости от поворота персонажа
         if (healthCount) healthCount.transform.rotation = TextRotation();
         if (projectileCount) projectileCount.transform.rotation = TextRotation();
+        if (bonusCount) bonusCount.transform.rotation = TextRotation();
     }
 
     Quaternion TextRotation()
     {
-        return transform.rotation.y < 0 || transform.rotation.y > 0 ? RotationY : new Quaternion();
+        return transform.rotation.y < 0 || transform.rotation.y > 0 ? Quaternion.identity : new Quaternion();
     }
 
     /// <summary>
@@ -52,6 +47,11 @@ public class Output : MonoBehaviour
     public void OutputProjectilesCount(string count)
     {
         projectileCount.text = count;
+    }
+
+    public void OutputBonusCount(string count)
+    {
+        bonusCount.text = count;
     }
 
     /// <summary>

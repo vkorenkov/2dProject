@@ -28,9 +28,9 @@ public class TriggerObjectActivate : MonoBehaviour
     {
         if (isCoroutine)
         {
-            if (collision.tag.ToLower() == "player" || collision.tag.ToLower() == "enemy")
+            if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
             {
-                isActivate = !isActivate;
+                isActivate = true;
                 StartCoroutine(SetObjectActiveCoroutine());
             }
         }
@@ -42,9 +42,9 @@ public class TriggerObjectActivate : MonoBehaviour
     {
         if (isCoroutine)
         {
-            if (collision.tag.ToLower() == "player" || collision.tag.ToLower() == "enemy")
+            if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
             {
-                isActivate = !isActivate;
+                isActivate = false;
                 StopCoroutine(SetObjectActiveCoroutine());
             }
         }

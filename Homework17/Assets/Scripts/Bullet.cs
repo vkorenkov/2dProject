@@ -52,14 +52,13 @@ public class Bullet : MonoBehaviour
     //}
     #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log(collision.Ge);
-
         // Попытка получения компонента HealthManager при столкновении с препятствием
         if (collision.gameObject.TryGetComponent(out HealthManager collisionObjHealth))
         {
             bulletRb.velocity = new Vector2(); // Сброс скорости полета
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2();
 
             if (hitEffect)
                 hitEffect.Play(); // Запуск эффекта попадания

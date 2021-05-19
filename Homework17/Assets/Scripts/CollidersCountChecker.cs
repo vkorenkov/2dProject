@@ -11,19 +11,13 @@ public class CollidersCountChecker : MonoBehaviour
         colliders = new List<Collider2D>();
     }
 
-    private void Update()
-    {
-        Debug.Log(colliders.Count);
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             colliders.Add(collision);
 
-            if (colliders.Count > 5)
+            if (colliders.Count > 3)
             {
                 StartStopPlatform(0);
             }
@@ -36,7 +30,7 @@ public class CollidersCountChecker : MonoBehaviour
         {
             colliders.Remove(collision);
 
-            if (colliders.Count < 4)
+            if (colliders.Count < 3)
             {
                 StartStopPlatform(1);
             }
