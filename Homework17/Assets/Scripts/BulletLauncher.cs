@@ -38,7 +38,7 @@ public class BulletLauncher : MonoBehaviour
             return;
 
         // Создание экзкмпляра объекта снаряда
-        Rigidbody2D newBullet = Instantiate(bullet, launcher.position, Quaternion.identity, launcher.transform).GetComponent<Rigidbody2D>();
+        Rigidbody2D newBullet = Instantiate(bullet, launcher.position, Quaternion.identity, null).GetComponent<Rigidbody2D>();
         // Присвоение значения вращения снаряда в зависимости от стороны движения
         bulletTorque = transform.rotation.y > 0 ? -Mathf.Abs(bulletTorque) : Mathf.Abs(bulletTorque);
         // Придание вращения снаряду

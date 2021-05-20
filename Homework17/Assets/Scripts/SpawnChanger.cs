@@ -8,8 +8,14 @@ public class SpawnChanger : MonoBehaviour
     [SerializeField] Transform MainCharacterPosition;
     [SerializeField] List<Transform> spawns;
     [SerializeField] List<CinemachineVirtualCamera> cameras;
+    CameraChanger cameraChanger;
 
     KeyCode keyCode;
+
+    private void Awake()
+    {
+        cameraChanger = Camera.main.GetComponent<CameraChanger>();
+    }
 
     private void Update()
     {
@@ -66,8 +72,9 @@ public class SpawnChanger : MonoBehaviour
     public void ChangePosition(int spawnNumber, int cameraNumber)
     {
         MainCharacterPosition.position = spawns[spawnNumber].position;
-        ChangeCameraPriority();
-        cameras[cameraNumber].Priority = 10;
+        cameraChanger.cameras[cameraNumber].Priority = cameraChanger.currentCamera.Priority + 1;
+        cameraChanger.currentCamera = cameraChanger.cameras[cameraNumber];
+
     }
 
     void OnGUI()
@@ -77,14 +84,6 @@ public class SpawnChanger : MonoBehaviour
         if (key.isKey)
         {
             keyCode = key.keyCode;
-        }
-    }
-
-    private void ChangeCameraPriority()
-    {
-        foreach (var c in cameras)
-        {
-            c.Priority = 1;
         }
     }
 }

@@ -73,7 +73,7 @@ public class SliderScript : MonoBehaviour
                     }
                     else
                     {
-                        message.text = $"You must collect {collectedObjectCount} beer to get through!";
+                        message.text = $"You must collect {collectedObjectCount} beer to get through! \n {CollectObjects.hints[InputCharacter.currentLevel]}";
                         AnimationPlayback(true);
                     }
                 }

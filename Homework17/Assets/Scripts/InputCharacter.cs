@@ -92,6 +92,8 @@ public class InputCharacter : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(currentLevel);
+
         SetChangers();
 
         if (isControlEnable)
