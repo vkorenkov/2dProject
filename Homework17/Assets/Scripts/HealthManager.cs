@@ -16,6 +16,8 @@ public class HealthManager : MonoBehaviour
     public event ControlDel ControlEnableEvent;
     public event ControlDel DeathEvent;
 
+    [SerializeField] int livesCount;
+
     [SerializeField] bool godMode;
     /// <summary>
     /// Максимальное количество здоровья персонажа
@@ -77,13 +79,13 @@ public class HealthManager : MonoBehaviour
         if (totaldamage)
         {
             currentHealth -= currentHealth;
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            if (livesCount == 0) GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         // Вычитание здоровья персонажа в соответствии с уроном
         currentHealth -= damage;
 
-        if(isPlayer) isDamaged = true;
+        if (isPlayer) isDamaged = true;
 
         // получение состояния персонажа
         isAlive = CheckCharacterHealth();
@@ -91,24 +93,22 @@ public class HealthManager : MonoBehaviour
         // Действия при "смерти" персонажа
         if (!isAlive)
         {
-            if (isPlayer)
-            {
-                DeathEvent?.Invoke(isAlive); // Вызов события изменения доступности управления в соответствии с состоянием персонажа
-                ControlEnableEvent.Invoke(isAlive);
-                Camera.main.GetComponent<CinemachineBrain>().enabled = false;
-            }
-
             // Отключение всех анимаций
             DeactivatedAnimations();
 
             // Вызов анимации "смерти" персонажа
             characterAnimator.SetTrigger("DeathT");
 
+            if (isPlayer)
+            {
+                DeathEvent?.Invoke(isAlive); // Вызов события изменения доступности управления в соответствии с состоянием персонажа
+                ControlEnableEvent?.Invoke(isAlive);
+                Camera.main.GetComponent<CinemachineBrain>().enabled = false;
+            }
+
             // Изменение активности коллайдера в зависимости от состояния персонажа
             foreach (var c in GetComponents<Collider2D>())
-            {
                 c.enabled = isAlive;
-            }
 
             // Уничтожение объекта персонажа
             Destroy(gameObject, destroyTime);
@@ -129,10 +129,11 @@ public class HealthManager : MonoBehaviour
 
         ControlEnableEvent.Invoke(true);
 
-        if(isPlayer) isDamaged = false;
+        if (isPlayer) isDamaged = false;
 
         StopCoroutine(DamageCoolDown());
     }
+
 
     /// <summary>
     /// Метод отключения всех анимаций

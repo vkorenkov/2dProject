@@ -7,6 +7,7 @@ public class CharacterLevelTransitions : MonoBehaviour
     [SerializeField] bool isBack;
     [SerializeField] Transform MainCharacterPosition;
     [SerializeField] CameraChanger cameraChanger;
+    Transform currentSpawn;
 
     private void Awake()
     {       
