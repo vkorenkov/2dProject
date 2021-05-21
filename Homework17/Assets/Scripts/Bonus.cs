@@ -7,25 +7,51 @@ public class Bonus : MonoBehaviour
     public bool isProjectile;
     public bool isHealth;
 
+    private bool canPickUp;
+
+    HealthManager healthManager;
+    CollectObjects collectObjects;
+    BulletLauncher bulletLauncher;
+
     [SerializeField] float healthRecovery;
     [SerializeField] int projectileRecovery;
     [SerializeField] ParticleSystem getBonusEffect;
     [SerializeField] Animation DescriptionAnimation;
-    Collider2D playerCollision;
 
     [SerializeField] TextMeshPro bonusDescription;
 
+    private void Awake()
+    {
+        var player = GameObject.Find("MainCharacter");
+
+        if (isHealth)
+            healthManager = player.GetComponent<HealthManager>();
+        if (isProjectile)
+            bulletLauncher = player.GetComponentInChildren<BulletLauncher>();
+        if (isBonus)
+            collectObjects = player.GetComponent<CollectObjects>();
+
+    }
+
     private void Update()
     {
-        if (isBonus)
+        if (Input.GetKeyDown(KeyCode.E) && canPickUp)
         {
-            if (Input.GetKeyDown(KeyCode.E) && playerCollision)
+            if (isBonus) collectObjects.collectedObjectsCount += 1;
+
+            if (isHealth && healthManager.currentHealth < healthManager.maxHealth)
             {
-                getBonusEffect.Play();
-                playerCollision.GetComponent<CollectObjects>().collectedObjectsCount += 1;
-                DestroyBonus(getBonusEffect.main.duration);
-                playerCollision = null;
+                var current = healthManager.maxHealth - healthManager.currentHealth;
+                healthManager.currentHealth += current > healthRecovery ? healthRecovery : current;
             }
+            else if (!isBonus)
+                return;
+
+            getBonusEffect.Play();
+
+            DestroyBonus(getBonusEffect.main.duration);
+
+            canPickUp = false;
         }
     }
 
@@ -33,26 +59,17 @@ public class Bonus : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            canPickUp = true;
+
             if (isBonus)
-            {
-                if (bonusDescription)
-                {
-                    playerCollision = collision;
-                    DescriptionAnimation["DescriptionAnimation"].speed = 1;
-                    DescriptionAnimation.Play();
-                }
-            }
+                ShowDescription();
 
             if (isHealth)
-            {
-                collision.GetComponent<HealthManager>().currentHealth += healthRecovery;
-                DestroyBonus(getBonusEffect.main.startLifetime.constant);
-                getBonusEffect.Play();
-            }
+                ShowDescription();
 
             if (isProjectile)
             {
-                collision.GetComponentInChildren<BulletLauncher>().bulletCont += projectileRecovery;
+                bulletLauncher.bulletCount += projectileRecovery;
                 DestroyBonus(getBonusEffect.main.startLifetime.constant);
                 getBonusEffect.Play();
             }
@@ -63,7 +80,7 @@ public class Bonus : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerCollision = null;
+            canPickUp = false;
 
             if (bonusDescription)
             {
@@ -72,6 +89,12 @@ public class Bonus : MonoBehaviour
                 DescriptionAnimation.Play();
             }
         }
+    }
+
+    void ShowDescription()
+    {
+        DescriptionAnimation["DescriptionAnimation"].speed = 1;
+        DescriptionAnimation.Play();
     }
 
     void DestroyBonus(float destroyTime)

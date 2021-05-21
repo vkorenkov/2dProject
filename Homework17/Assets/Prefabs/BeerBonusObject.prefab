@@ -4880,7 +4880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3782464047317868787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.917, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2504539284578206194}
@@ -4980,6 +4980,7 @@ MonoBehaviour:
   isBonus: 1
   isProjectile: 0
   isHealth: 0
+  player: {fileID: 2739987761160417634, guid: f0a18c6ede4ed8541a6b31f5d59bbfb2, type: 3}
   healthRecovery: 0
   projectileRecovery: 0
   getBonusEffect: {fileID: 7516795275035817479}
@@ -9882,7 +9883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.917, y: -0.2775}
+  m_AnchoredPosition: {x: 0, y: -0.2775}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7149883484969897950

@@ -22,7 +22,7 @@ public class HealthManager : MonoBehaviour
     /// <summary>
     /// Максимальное количество здоровья персонажа
     /// </summary>
-    [SerializeField] float maxHealth;
+    public float maxHealth;
     /// <summary>
     /// Текущее значение здоровья персонажа
     /// </summary>
@@ -43,6 +43,7 @@ public class HealthManager : MonoBehaviour
     /// Поле вывода информации на экран
     /// </summary>
     [SerializeField] Output output;
+    Color textColor;
 
     bool isDamaged;
 
@@ -57,6 +58,10 @@ public class HealthManager : MonoBehaviour
         if (output)
         {
             currentHealth = currentHealth >= 0 ? currentHealth : 0; // Если уровень здоровья упадет ниже нуля, то будет выводится "0"
+
+            textColor = CheckHealthColor();
+
+            output.ChangeTextColor(output.healthCount, textColor);
 
             output.OutputHealthCount($"{currentHealth}"); // Вызов метода вывода здоровья персонажа
         }
@@ -157,10 +162,6 @@ public class HealthManager : MonoBehaviour
     /// <returns></returns>
     bool CheckCharacterHealth()
     {
-        // Изменение цвета вывода здоровья персонажа
-        if (output)
-            output.ChangeTextColor(output.healthCount, CheckHealthColor());
-
         return currentHealth > 0;
     }
 

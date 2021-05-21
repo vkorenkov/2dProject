@@ -14,7 +14,7 @@ public class BulletLauncher : MonoBehaviour
 
     [SerializeField] Output output;
 
-    [Header("Projectiles count")] public int bulletCont;
+    [Header("Projectiles count")] public int bulletCount;
     /// <summary>
     /// Объект снаряда
     /// </summary>
@@ -26,7 +26,7 @@ public class BulletLauncher : MonoBehaviour
 
     private void Update()
     {
-        output.OutputProjectilesCount($"{bulletCont}");
+        output.OutputProjectilesCount($"{bulletCount}");
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public class BulletLauncher : MonoBehaviour
     /// </summary>
     public void Shot()
     {
-        if (bulletCont == 0)
+        if (bulletCount == 0)
             return;
 
         // Создание экзкмпляра объекта снаряда

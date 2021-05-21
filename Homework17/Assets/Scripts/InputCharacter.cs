@@ -92,8 +92,6 @@ public class InputCharacter : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentLevel);
-
         SetChangers();
 
         if (isControlEnable)
@@ -189,7 +187,7 @@ public class InputCharacter : MonoBehaviour
 
     void ShootActivate()
     {
-        if (shotTimer > shotTime && bulletLauncher.bulletCont > 0)
+        if (shotTimer > shotTime && bulletLauncher.bulletCount > 0)
         {
             if (Input.GetButton("Fire2"))
             {
@@ -197,7 +195,7 @@ public class InputCharacter : MonoBehaviour
 
                 ShotControl();
 
-                bulletLauncher.bulletCont -= 1;
+                bulletLauncher.bulletCount -= 1;
             }
             else
                 shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера

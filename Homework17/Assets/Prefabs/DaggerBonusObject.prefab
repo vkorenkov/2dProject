@@ -9841,6 +9841,7 @@ MonoBehaviour:
   isBonus: 0
   isProjectile: 1
   isHealth: 0
+  player: {fileID: 2739987761160417634, guid: f0a18c6ede4ed8541a6b31f5d59bbfb2, type: 3}
   healthRecovery: 0
   projectileRecovery: 1
   getBonusEffect: {fileID: 8342973053979884162}
