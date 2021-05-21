@@ -21,7 +21,10 @@ public class MeleeAtack : MonoBehaviour
 
         foreach (var d in damageObjects)
         {
-            d.GetComponent<HealthManager>().TakeDamage(false, damage);
+            var damageObject = d.GetComponent<HealthManager>();
+            damageObject.TakeDamage(false, damage);
+            if (!damageObject.isAlive)
+                GetComponentInParent<CollectObjects>().killedEnemies += 1;
         }
     }
 }

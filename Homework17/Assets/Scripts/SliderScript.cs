@@ -67,7 +67,6 @@ public class SliderScript : MonoBehaviour
                 {
                     if (collision.GetComponent<CollectObjects>().collectedObjectsCount >= collectedObjectCount)
                     {
-                        collision.GetComponent<CollectObjects>().collectedObjectsCount = 0;
                         slider.useMotor = false;
                         message.gameObject.SetActive(false);
                     }
@@ -81,8 +80,27 @@ public class SliderScript : MonoBehaviour
                 {
                     if (collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount)
                     {
-                        collision.GetComponent<CollectObjects>().killedEnemies = 0;
                         slider.useMotor = false;
+                        message.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        message.text = $"You must killed {killedEnemiesCount} enemies to get through!";
+                        AnimationPlayback(true);
+                    }
+                }
+                if (isCollectDoor && isKilleEnemiesDoor)
+                {
+                    if (collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount
+                        && collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount)
+                    {
+                        slider.useMotor = false;
+                        message.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        message.text = $"You must collect {collectedObjectCount} beer and killed {killedEnemiesCount} enemies to get through! \n {CollectObjects.hints[InputCharacter.currentLevel]}";
+                        AnimationPlayback(true);
                     }
                 }
             }

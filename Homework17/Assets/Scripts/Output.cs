@@ -13,6 +13,7 @@ public class Output : MonoBehaviour
     /// Текст вывода количетва снарядов
     /// </summary>
     [SerializeField] public TextMeshPro projectileCount;
+    [SerializeField] public TextMeshPro killedCount;
 
     [SerializeField] public TextMeshPro bonusCount;
 
@@ -37,7 +38,8 @@ public class Output : MonoBehaviour
     /// <param name="count"></param>
     public void OutputHealthCount(string count)
     {
-        healthCount.text = count;
+        healthCount.text = $"{count} %";
+        //healthCount.text = count;
     }
 
     /// <summary>
@@ -52,6 +54,11 @@ public class Output : MonoBehaviour
     public void OutputBonusCount(string count)
     {
         bonusCount.text = count;
+    }
+
+    public void OutputKillsCount(string count)
+    {
+        killedCount.text = count;
     }
 
     /// <summary>

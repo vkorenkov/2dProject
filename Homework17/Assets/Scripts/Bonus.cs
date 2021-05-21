@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class Bonus : MonoBehaviour
     [SerializeField] float healthRecovery;
     [SerializeField] int projectileRecovery;
     [SerializeField] ParticleSystem getBonusEffect;
+    [SerializeField] ParticleSystem bonusEffect;
     [SerializeField] Animation DescriptionAnimation;
 
     [SerializeField] TextMeshPro bonusDescription;
@@ -49,10 +51,24 @@ public class Bonus : MonoBehaviour
 
             getBonusEffect.Play();
 
-            DestroyBonus(getBonusEffect.main.duration);
+            StartCoroutine(ParticlesPlaybackTime());
 
             canPickUp = false;
         }
+    }
+
+    IEnumerator ParticlesPlaybackTime()
+    {
+        bonusEffect.Stop();
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        while (getBonusEffect.isPlaying)
+            yield return null;
+
+        Destroy(gameObject.transform.parent.gameObject);
+
+        StopCoroutine(ParticlesPlaybackTime());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -70,8 +86,8 @@ public class Bonus : MonoBehaviour
             if (isProjectile)
             {
                 bulletLauncher.bulletCount += projectileRecovery;
-                DestroyBonus(getBonusEffect.main.startLifetime.constant);
                 getBonusEffect.Play();
+                StartCoroutine(ParticlesPlaybackTime());
             }
         }
     }
@@ -95,12 +111,5 @@ public class Bonus : MonoBehaviour
     {
         DescriptionAnimation["DescriptionAnimation"].speed = 1;
         DescriptionAnimation.Play();
-    }
-
-    void DestroyBonus(float destroyTime)
-    {
-        GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
-        Destroy(gameObject.transform.parent.gameObject, destroyTime);
     }
 }

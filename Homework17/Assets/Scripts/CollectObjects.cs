@@ -23,5 +23,6 @@ public class CollectObjects : MonoBehaviour
     {
         allBonuses += collectedObjectsCount;
         output.OutputBonusCount($"{collectedObjectsCount}");
+        output.OutputKillsCount($"{killedEnemies}");
     }
 }

@@ -16,8 +16,6 @@ public class HealthManager : MonoBehaviour
     public event ControlDel ControlEnableEvent;
     public event ControlDel DeathEvent;
 
-    [SerializeField] int livesCount;
-
     [SerializeField] bool godMode;
     /// <summary>
     /// ћаксимальное количество здоровь€ персонажа
@@ -27,6 +25,11 @@ public class HealthManager : MonoBehaviour
     /// “екущее значение здоровь€ персонажа
     /// </summary>
     public float currentHealth;
+
+    float CurrentHealthPercent
+    {
+        get => Mathf.Round(currentHealth / maxHealth * 100);
+    }
     /// <summary>
     /// —осто€ние персонажа
     /// </summary>
@@ -63,7 +66,7 @@ public class HealthManager : MonoBehaviour
 
             output.ChangeTextColor(output.healthCount, textColor);
 
-            output.OutputHealthCount($"{currentHealth}"); // ¬ызов метода вывода здоровь€ персонажа
+            output.OutputHealthCount($"{CurrentHealthPercent/*currentHealth*/}"); // ¬ызов метода вывода здоровь€ персонажа
         }
     }
 
@@ -74,18 +77,19 @@ public class HealthManager : MonoBehaviour
     /// <param name="damage"></param>
     public void TakeDamage(bool totaldamage, float damage = 0)
     {
+        // ”словие при котором отнимаетс€ все доступное здоровье персонажа
+        if (totaldamage)
+        {
+            isDamaged = false;
+            currentHealth -= currentHealth;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
         if (isDamaged)
             return;
 
         if (godMode)
             return;
-
-        // ”словие при котором отнимаетс€ все доступное здоровье персонажа
-        if (totaldamage)
-        {
-            currentHealth -= currentHealth;
-            if (livesCount == 0) GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        }
 
         // ¬ычитание здоровь€ персонажа в соответствии с уроном
         currentHealth -= damage;
@@ -173,10 +177,10 @@ public class HealthManager : MonoBehaviour
     {
         Color color = new Color();
 
-        if (currentHealth > 75) color = Color.green;
-        if (currentHealth < 75) color = Color.yellow;
-        if (currentHealth < 50) color = new Color(205, 87, 0);
-        if (currentHealth < 25) color = Color.red;
+        if (CurrentHealthPercent > 75) color = Color.green;
+        if (CurrentHealthPercent < 75) color = Color.yellow;
+        if (CurrentHealthPercent < 50) color = new Color(205, 87, 0);
+        if (CurrentHealthPercent < 25) color = Color.red;
 
         return color;
     }

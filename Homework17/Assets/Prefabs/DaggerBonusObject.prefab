@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429416610201641143}
-  m_LocalRotation: {x: -0.9914453, y: -0, z: -0, w: -0.13052316}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.097841874, y: 0.10439574, z: 0.18912989}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.1304, z: 0}
+  m_LocalScale: {x: 0.12152802, y: 0.06483425, z: 0.2349156}
   m_Children: []
-  m_Father: {fileID: 2427521507134657721}
+  m_Father: {fileID: 6486813398324710369}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -195, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2431084680839190582
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -659,7 +659,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 4
     angle: 9.442732
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1700,7 +1700,7 @@ ParticleSystem:
     orbitalY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4832,7 +4832,7 @@ Transform:
   m_LocalPosition: {x: 2.495, y: -0.074, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7722581462993858499}
+  - {fileID: 6738909572592102109}
   - {fileID: 6486813398324710369}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4878,13 +4878,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354991969334766538}
-  m_LocalRotation: {x: -0.9914453, y: -0, z: -0, w: -0.13052316}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10929, y: 0.10929, z: 0.10929}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.0685, z: 0}
+  m_LocalScale: {x: 0.054645, y: 0.109290004, z: 0.054645002}
   m_Children: []
-  m_Father: {fileID: 6486813398324710369}
+  m_Father: {fileID: 2427521507134657721}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -195, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &8342973053979884162
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4894,7 +4894,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4354991969334766538}
   serializedVersion: 7
   lengthInSec: 0.7
-  simulationSpeed: 1
+  simulationSpeed: 0.7
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -4968,7 +4968,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5021,7 +5021,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5512,7 +5512,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 4
     angle: 9.442732
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -5718,7 +5718,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5821,66 +5821,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
-    m_Bursts:
-    - serializedVersion: 2
-      time: 0
-      countCurve:
-        serializedVersion: 2
-        minMaxState: 0
-        scalar: 20
-        minScalar: 30
-        maxCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        minCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
-      probability: 1
+    m_BurstCount: 0
+    m_Bursts: []
   SizeModule:
     enabled: 1
     curve:
@@ -6664,7 +6606,7 @@ ParticleSystem:
     orbitalZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9745,7 +9687,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
-  - {fileID: 6738909572592102109}
+  - {fileID: 7722581462993858499}
   m_Father: {fileID: 2427521507134657721}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9813,7 +9755,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0013327599, y: -0.0007074699}
+  m_Offset: {x: -0.00622344, y: -0.00070747733}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9824,7 +9766,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11043835, y: 0.27524465}
+  m_Size: {x: 0.2115159, y: 0.27524465}
   m_EdgeRadius: 0
 --- !u!114 &2067685276048359132
 MonoBehaviour:
@@ -9841,9 +9783,9 @@ MonoBehaviour:
   isBonus: 0
   isProjectile: 1
   isHealth: 0
-  player: {fileID: 2739987761160417634, guid: f0a18c6ede4ed8541a6b31f5d59bbfb2, type: 3}
   healthRecovery: 0
   projectileRecovery: 1
   getBonusEffect: {fileID: 8342973053979884162}
+  bonusEffect: {fileID: 2431084680839190582}
   DescriptionAnimation: {fileID: 0}
   bonusDescription: {fileID: 0}

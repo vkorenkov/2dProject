@@ -333,7 +333,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4881,7 +4881,7 @@ Transform:
   m_GameObject: {fileID: 3782464047317868787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 2504539284578206194}
   - {fileID: 18074998377757996}
@@ -4952,7 +4952,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015832782, y: 0.039997235}
+  m_Offset: {x: 0.009378701, y: 0.023401082}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4963,7 +4963,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0383275, y: 0.9003438}
+  m_Size: {x: 1.4938004, y: 1.0994979}
   m_EdgeRadius: 0
 --- !u!114 &6150812170648195309
 MonoBehaviour:
@@ -4983,6 +4983,7 @@ MonoBehaviour:
   healthRecovery: 50
   projectileRecovery: 0
   getBonusEffect: {fileID: 7516795275035817479}
+  bonusEffect: {fileID: 1010783479935254755}
   DescriptionAnimation: {fileID: 2905353547523209237}
   bonusDescription: {fileID: 377270683188501953}
 --- !u!1 &6501993950286761606
@@ -5010,13 +5011,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6501993950286761606}
-  m_LocalRotation: {x: -0.7933523, y: -0, z: -0, w: 0.60876274}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.005, y: -0.067, z: 0}
   m_LocalScale: {x: 0.10929, y: 0.10929, z: 0.10929}
   m_Children: []
   m_Father: {fileID: 1434464323931727312}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -105, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7516795275035817479
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5025,7 +5026,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6501993950286761606}
   serializedVersion: 7
-  lengthInSec: 0.7
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5100,7 +5101,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5153,7 +5154,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8.291539
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5850,7 +5851,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5953,66 +5954,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
-    m_Bursts:
-    - serializedVersion: 2
-      time: 0
-      countCurve:
-        serializedVersion: 2
-        minMaxState: 0
-        scalar: 10
-        minScalar: 30
-        maxCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        minCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
-      probability: 1
+    m_BurstCount: 0
+    m_Bursts: []
   SizeModule:
     enabled: 1
     curve:
@@ -9946,7 +9889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "+50 HP. \nPress \"E\" to collect"
+  m_text: "+50 hp. \nPress \"E\" to collect"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6003d3d9f11d194ea21d0c422e860ee, type: 2}
   m_sharedMaterial: {fileID: -8310938876139804239, guid: a6003d3d9f11d194ea21d0c422e860ee, type: 2}
