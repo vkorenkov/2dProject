@@ -27,6 +27,8 @@ public class SpawnObjectScript : MonoBehaviour
     /// </summary>
     bool canLaunch;
 
+    [HideInInspector] public bool isDestroy; 
+
     private void Start()
     {
         // Назначение случайного времени таймера запука бомбы
@@ -49,15 +51,17 @@ public class SpawnObjectScript : MonoBehaviour
                     spawnPosition = launcher.position.x;
 
                 // Создание жкземпляра объекта бомбы
-                var obj = Instantiate(spawnObj, new Vector3(spawnPosition, launcher.position.y), Quaternion.identity);
+                var InstantiateObj = Instantiate(spawnObj, new Vector3(spawnPosition, launcher.position.y), Quaternion.identity);
 
-                if (obj.TryGetComponent(out Rigidbody2D rb))
+                if (InstantiateObj.TryGetComponent(out Rigidbody2D rb))
                     rb.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
 
                 // ОТключение возможноти запуска бомбы
                 canLaunch = false;
                 // Назначение случайного значения таймера бомбы
                 bombLaunchTimer = Random.Range(0, bombLaunchTimerMaxValue);
+
+                MenuCutscene.bonuses.Add(InstantiateObj);
             }
         }
     }
@@ -65,7 +69,7 @@ public class SpawnObjectScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Запуск бомбы при срабатывании триггера
-        if (collision.tag.ToLower() == "player" || collision.tag.ToLower() == "movable")
+        if (collision.CompareTag("Player") || collision.CompareTag("Movable"))
             canLaunch = true;
     }
 }
