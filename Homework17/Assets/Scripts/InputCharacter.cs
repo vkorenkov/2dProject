@@ -92,7 +92,8 @@ public class InputCharacter : MonoBehaviour
 
     void Update()
     {
-        SetChangers();
+        if (leftLevelChanger && rightLevelChanger)
+            SetChangers();
 
         if (isControlEnable)
         {
@@ -209,5 +210,11 @@ public class InputCharacter : MonoBehaviour
 
         leftLevelChanger.position = leftCameraLine;
         rightLevelChanger.position = rightCameraLine;
+    }
+
+    public void ControlEnableChange(bool control)
+    {
+        run = control;
+        isControlEnable = control;
     }
 }

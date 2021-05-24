@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SliderScript : MonoBehaviour
 {
+    AnimationActivator animationActivator;
+
     private JointMotor2D sliderMotor;
     [SerializeField] bool isFullMotor;
     [SerializeField] bool isMovePlatform;
@@ -20,6 +22,8 @@ public class SliderScript : MonoBehaviour
 
     private void Awake()
     {
+        animationActivator = new AnimationActivator();
+
         if (isMovePlatform) isFullMotor = true;
 
         if (slider && isFullMotor)
@@ -73,7 +77,7 @@ public class SliderScript : MonoBehaviour
                     else
                     {
                         message.text = $"You must collect {collectedObjectCount} beer to get through! \n {CollectObjects.hints[InputCharacter.currentLevel]}";
-                        AnimationPlayback(true);
+                        animationActivator.AnimationPlayback(message, true);
                     }
                 }
                 if (isKilleEnemiesDoor)
@@ -86,7 +90,7 @@ public class SliderScript : MonoBehaviour
                     else
                     {
                         message.text = $"You must killed {killedEnemiesCount} enemies to get through!";
-                        AnimationPlayback(true);
+                        animationActivator.AnimationPlayback(message, true);
                     }
                 }
                 if (isCollectDoor && isKilleEnemiesDoor)
@@ -100,7 +104,7 @@ public class SliderScript : MonoBehaviour
                     else
                     {
                         message.text = $"You must collect {collectedObjectCount} beer and killed {killedEnemiesCount} enemies to get through! \n {CollectObjects.hints[InputCharacter.currentLevel]}";
-                        AnimationPlayback(true);
+                        animationActivator.AnimationPlayback(message, true);
                     }
                 }
             }
@@ -127,23 +131,8 @@ public class SliderScript : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
-                AnimationPlayback(false);
+                animationActivator.AnimationPlayback(message, false);
             }
         }
-    }
-
-    void AnimationPlayback(bool side)
-    {
-        var DescriptionAnimation = message.GetComponent<Animation>();
-        int speed = 1;
-
-        if (!side)
-        {
-            speed *= -1;
-            DescriptionAnimation["DescriptionAnimation"].time = DescriptionAnimation["DescriptionAnimation"].length;
-        }
-
-        DescriptionAnimation["DescriptionAnimation"].speed = speed;
-        DescriptionAnimation.Play();
     }
 }

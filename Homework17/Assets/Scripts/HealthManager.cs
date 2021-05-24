@@ -66,7 +66,8 @@ public class HealthManager : MonoBehaviour
 
             output.ChangeTextColor(output.healthCount, textColor);
 
-            output.OutputHealthCount($"{CurrentHealthPercent/*currentHealth*/}"); // Вызов метода вывода здоровья персонажа
+            output.OutputHealthCount($"{CurrentHealthPercent}"); // Вызов метода вывода здоровья персонажа в процентах
+            //output.OutputHealthCount($"{currentHealth}"); // Вызов метода вывода здоровья персонажа в очках
         }
     }
 
@@ -175,13 +176,6 @@ public class HealthManager : MonoBehaviour
     /// <returns></returns>
     Color CheckHealthColor()
     {
-        Color color = new Color();
-
-        if (CurrentHealthPercent > 75) color = Color.green;
-        if (CurrentHealthPercent < 75) color = Color.yellow;
-        if (CurrentHealthPercent < 50) color = new Color(205, 87, 0);
-        if (CurrentHealthPercent < 25) color = Color.red;
-
-        return color;
+        return new Color((maxHealth - currentHealth) / 100 + 0.5f, CurrentHealthPercent / 100, 0);
     }
 }

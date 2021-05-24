@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Output : MonoBehaviour
 {
+    [HideInInspector] public AnimationActivator animationActivator = new AnimationActivator();
+
     [SerializeField] Transform hudPosition;
     /// <summary>
     /// Текст вывода здоровья
@@ -12,10 +14,12 @@ public class Output : MonoBehaviour
     /// <summary>
     /// Текст вывода количетва снарядов
     /// </summary>
-    [SerializeField] public TextMeshPro projectileCount;
-    [SerializeField] public TextMeshPro killedCount;
-
-    [SerializeField] public TextMeshPro bonusCount;
+    [SerializeField] private TextMeshPro projectileCount;
+    [SerializeField] private TextMeshPro killedCount;
+    [SerializeField] private TextMeshPro bonusCount;
+    [SerializeField] public TextMeshPro dialogText;
+    [HideInInspector] public float timer;
+    [HideInInspector] public bool goTimer;
 
     private void Update()
     {
@@ -25,6 +29,17 @@ public class Output : MonoBehaviour
         if (healthCount) healthCount.transform.rotation = TextRotation();
         if (projectileCount) projectileCount.transform.rotation = TextRotation();
         if (bonusCount) bonusCount.transform.rotation = TextRotation();
+
+        if (goTimer)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                goTimer = false;
+                animationActivator.AnimationPlayback(dialogText, false);
+            }
+        }
     }
 
     Quaternion TextRotation()
@@ -58,7 +73,13 @@ public class Output : MonoBehaviour
 
     public void OutputKillsCount(string count)
     {
-        killedCount.text = count;
+        if(killedCount) killedCount.text = count;
+    }
+
+    public void OutputDialog(string dialog)
+    {
+        dialogText.text = dialog;
+        animationActivator.AnimationPlayback(dialogText, true);
     }
 
     /// <summary>

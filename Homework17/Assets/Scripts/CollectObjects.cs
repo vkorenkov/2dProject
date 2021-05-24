@@ -17,11 +17,8 @@ public class CollectObjects : MonoBehaviour
         [4] = "Your advertisement could be here."
     };
 
-    int allBonuses;
-
     private void Update()
     {
-        allBonuses += collectedObjectsCount;
         output.OutputBonusCount($"{collectedObjectsCount}");
         output.OutputKillsCount($"{killedEnemies}");
     }

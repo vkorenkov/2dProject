@@ -9,7 +9,7 @@ public class SpawnObjectScript : MonoBehaviour
 
     [SerializeField] Transform launcher;
     /// <summary>
-    /// Объект бомбы
+    /// Объект для размещения
     /// </summary>
     [SerializeField, Header("Spawn game object")] GameObject spawnObj;
 
@@ -49,9 +49,10 @@ public class SpawnObjectScript : MonoBehaviour
                     spawnPosition = launcher.position.x;
 
                 // Создание жкземпляра объекта бомбы
-                Rigidbody2D swpawnObj = Instantiate(spawnObj, new Vector3(spawnPosition, launcher.position.y), Quaternion.identity).GetComponent<Rigidbody2D>();
+                var obj = Instantiate(spawnObj, new Vector3(spawnPosition, launcher.position.y), Quaternion.identity);
 
-                swpawnObj.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
+                if (obj.TryGetComponent(out Rigidbody2D rb))
+                    rb.AddForce(transform.up * Random.Range(minLaunchForce, maxLaunchForce), ForceMode2D.Impulse); // Небольшой импульс запуска бомбы
 
                 // ОТключение возможноти запуска бомбы
                 canLaunch = false;
