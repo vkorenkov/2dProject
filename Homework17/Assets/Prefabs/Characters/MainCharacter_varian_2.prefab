@@ -183,7 +183,6 @@ GameObject:
   - component: {fileID: 2739987761160417636}
   - component: {fileID: 3166374237199532722}
   - component: {fileID: 2304998809283994446}
-  - component: {fileID: 5590281815612863606}
   - component: {fileID: 3283866234901336805}
   - component: {fileID: 3283866234901336806}
   m_Layer: 3
@@ -246,7 +245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightLevelChanger: {fileID: 0}
   leftLevelChanger: {fileID: 0}
-  collect: {fileID: 2304998809283994446}
   shotTime: 0.5
   meleeTime: 0.2
   isControlEnable: 1
@@ -298,19 +296,6 @@ MonoBehaviour:
   output: {fileID: 2739987761399636826}
   killedEnemies: 0
   collectedObjectsCount: 0
---- !u!114 &5590281815612863606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739987761160417634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637ace7bd86ce084884af90dc1076685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogs: []
 --- !u!50 &3283866234901336805
 Rigidbody2D:
   serializedVersion: 4
@@ -401,6 +386,8 @@ MonoBehaviour:
   killedCount: {fileID: 0}
   bonusCount: {fileID: 1606816736660473172}
   dialogText: {fileID: 5791303952061249227}
+  timer: 0
+  goTimer: 0
 --- !u!1 &2739987761877726465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,8 +1640,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -11866023
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ae2b74b1edd14bb18dd7b65ae916a54, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.36078432}
