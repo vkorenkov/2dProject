@@ -1,64 +1,48 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterLevelTransitions : MonoBehaviour
 {
     /// <summary>
+    /// Главная камера
+    /// </summary>
+    Camera mainCamera;
+
+    /// <summary>
     /// Обазначение левой стороны эерана
     /// </summary>
     [SerializeField] bool isBack;
+
     /// <summary>
-    /// Позиция главного персонажа
+    /// Координаты леавой границы камеры
     /// </summary>
-    [SerializeField] Transform MainCharacterPosition; 
+    Vector2 leftCameraLine;
     /// <summary>
-    /// Объект изменения камеры
+    /// Координаты правой границы камеры
     /// </summary>
-    [SerializeField] CameraChanger cameraChanger;
+    Vector2 rightCameraLine;
 
     private void Awake()
-    {       
-        // Подписка на событие смерти игрока
-        GameObject.Find("MainCharacter").GetComponent<HealthManager>().DeathEvent += CharacterLevelTransitions_DeathEvent;
-    }
-
-    /// <summary>
-    /// Обработчик события смерти игрока
-    /// </summary>
-    /// <param name="isAlive"></param>
-    private void CharacterLevelTransitions_DeathEvent(bool isAlive)
     {
-        // Установка приоритета первой камеры
-        cameraChanger.cameras.FirstOrDefault().Priority = cameraChanger.currentCamera.Priority + 1;
-        // Установка текущей камеры
-        cameraChanger.currentCamera = cameraChanger.cameras.FirstOrDefault();
-        InputCharacter.currentLevel = 0;
+        mainCamera = Camera.main;
     }
 
-    /// <summary>
-    /// Изменяет текущую камеру
-    /// </summary>
-    /// <param name="spawnNumber"></param>
-    public void ChangeCamera(int cameraNumber)
-    {       
-        cameraChanger.cameras[cameraNumber].Priority = cameraChanger.currentCamera.Priority + 1; // Установка приоритета камеры
-        cameraChanger.currentCamera = cameraChanger.cameras[cameraNumber];  // Установка текущей камеры
+    private void Update()
+    {
+        SetChangers();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             // Установка текущего уровня
             if (isBack)
-                InputCharacter.currentLevel -= 1; 
+                StartCoroutine(ChangeCharacterPositionCoroutine(false));
             else
-                InputCharacter.currentLevel += 1;
-
-            ChangeCamera(InputCharacter.currentLevel);
-
-            StartCoroutine(ChangeCharacterPositionCoroutine());
+                StartCoroutine(ChangeCharacterPositionCoroutine(true));
         }
     }
 
@@ -66,11 +50,30 @@ public class CharacterLevelTransitions : MonoBehaviour
     /// Меняет позицию игрока в зависимости от того с какой стороны игрок прошел границу камеры
     /// </summary>
     /// <returns></returns>
-    IEnumerator ChangeCharacterPositionCoroutine()
+    IEnumerator ChangeCharacterPositionCoroutine(bool isForward)
     {
-        yield return new WaitForSeconds(.1f);
+        Animation blackoutAnimation = GameObject.Find("StartCanvas").GetComponent<Animation>();
 
-        MainCharacterPosition.position = !isBack ? new Vector2(InputCharacter.leftCameraLine.x, MainCharacterPosition.position.y) :
-            new Vector2(InputCharacter.rightCameraLine.x, MainCharacterPosition.position.y);
+        // Запуск анимации перехода из катсцены на первый уровень
+        blackoutAnimation[blackoutAnimation.clip.name].time = blackoutAnimation[blackoutAnimation.clip.name].length;
+        blackoutAnimation[blackoutAnimation.clip.name].speed *= -1;
+        blackoutAnimation.Play();
+
+        yield return new WaitForSeconds(.5f);
+
+        int loadScene = isForward ? SceneManager.GetActiveScene().buildIndex + 1 : SceneManager.GetActiveScene().buildIndex - 1;
+
+        SceneManager.LoadScene(loadScene);
+    }
+
+    /// <summary>
+    /// Устанавливает триггеры смены уровня на границы камеры
+    /// </summary>
+    public void SetChangers()
+    {
+        leftCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(0, 0.5f)); // Получение левой границы экрана
+        rightCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(1, 0.5f)); // Получение правой границы экрана
+
+        transform.position = isBack ? leftCameraLine : rightCameraLine;
     }
 }

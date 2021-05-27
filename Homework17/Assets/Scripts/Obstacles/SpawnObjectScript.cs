@@ -14,6 +14,8 @@ public class SpawnObjectScript : MonoBehaviour
     [SerializeField, Header("Spawn game object")] GameObject spawnObj;
 
     [SerializeField] bool isRandom;
+
+    [SerializeField] bool isBomb;
     /// <summary>
     /// Максимальное значение таймера запуска бомбы
     /// </summary>
@@ -31,7 +33,7 @@ public class SpawnObjectScript : MonoBehaviour
 
     private void Update()
     {
-        if (canLaunch)
+        if (canLaunch && isBomb)
         {
             bombLaunchTimer -= Time.deltaTime; // Изменние таймера 
 
@@ -68,8 +70,13 @@ public class SpawnObjectScript : MonoBehaviour
         // Запуск бомбы при срабатывании триггера
         if (collision.CompareTag("Player") || collision.CompareTag("Movable"))
         {
-            Launch();
-            canLaunch = true;
+            if (isBomb)
+            {
+                Launch();
+                canLaunch = true;
+            }
+            else
+                Launch();
         }
     }
 

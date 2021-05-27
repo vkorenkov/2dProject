@@ -24,14 +24,14 @@ public class InputCharacter : MonoBehaviour
     /// Левый триггер смены камеры
     /// </summary>
     [SerializeField] Transform leftLevelChanger;
-    /// <summary>
-    /// Координаты леавой границы камеры
-    /// </summary>
-    public static Vector2 leftCameraLine;
-    /// <summary>
-    /// Координаты правой границы камеры
-    /// </summary>
-    public static Vector2 rightCameraLine;
+    ///// <summary>
+    ///// Координаты леавой границы камеры
+    ///// </summary>
+    //public static Vector2 leftCameraLine;
+    ///// <summary>
+    ///// Координаты правой границы камеры
+    ///// </summary>
+    //public static Vector2 rightCameraLine;
 
     /// <summary>
     /// Поле компонента Animator главного героя
@@ -113,8 +113,8 @@ public class InputCharacter : MonoBehaviour
 
     void Update()
     {
-        if (leftLevelChanger && rightLevelChanger)
-            SetChangers();
+        //if (leftLevelChanger && rightLevelChanger)
+        //    SetChangers();
 
         if (isControlEnable)
         {
@@ -233,17 +233,17 @@ public class InputCharacter : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Устанавливает триггеры смены уровня на границы камеры
-    /// </summary>
-    public void SetChangers()
-    {
-        leftCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(0, 0.5f)); // Получение левой границы экрана
-        rightCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(1, 0.5f)); // Получение правой границы экрана
+    ///// <summary>
+    ///// Устанавливает триггеры смены уровня на границы камеры
+    ///// </summary>
+    //public void SetChangers()
+    //{
+    //    leftCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(0, 0.5f)); // Получение левой границы экрана
+    //    rightCameraLine = mainCamera.ViewportToWorldPoint(new Vector2(1, 0.5f)); // Получение правой границы экрана
 
-        leftLevelChanger.position = leftCameraLine;
-        rightLevelChanger.position = rightCameraLine;
-    }
+    //    leftLevelChanger.position = leftCameraLine;
+    //    rightLevelChanger.position = rightCameraLine;
+    //}
 
     /// <summary>
     /// Включает\отключает управление

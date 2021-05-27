@@ -53,7 +53,7 @@ public class EnemyMove : MonoBehaviour
         moveAnimation = GetComponent<Animator>();
         health = GetComponent<HealthManager>();
         health.ControlEnableEvent += Health_ControlEnableEvent;
-        player = GameObject.Find("MainCharacter");
+        player = GameObject.FindGameObjectWithTag("Player");
         isMovable = true;
     }
 
