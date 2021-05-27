@@ -26,7 +26,7 @@ public class Bonus : MonoBehaviour
 
     private void Awake()
     {
-        var player = GameObject.Find("MainCharacter");
+        var player = GameObject.FindGameObjectWithTag("Player");
 
         // Определение типа бонуса
         if (isHealth)

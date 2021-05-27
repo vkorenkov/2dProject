@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\Menu\MenuCutscene.cs" />
     <Compile Include="Assets\Scripts\Obstacles\BombScript.cs" />
     <Compile Include="Assets\Scripts\Other\CollidersCountChecker.cs" />
-    <Compile Include="Assets\Scripts\Character\CameraChanger.cs" />
     <Compile Include="Assets\Scripts\Character\EnemyMove.cs" />
     <Compile Include="Assets\Scripts\Character\InputCharacter.cs" />
     <Compile Include="Assets\Scripts\MovePlatforms\UseMotorScript.cs" />
