@@ -22,6 +22,8 @@ public class Bonus : MonoBehaviour
 
     [SerializeField] TextMeshPro bonusDescription; // Объект текста описания
 
+    private Collider2D player;
+
     private void Awake()
     {
         var player = GameObject.Find("MainCharacter");
@@ -43,8 +45,16 @@ public class Bonus : MonoBehaviour
             if (isBonus) collectObjects.collectedObjectsCount += 1; // Прибавление собранного бонуса
 
             // Определение количества здоровья, чтобы не получить более 100% здоровья
-            if (isHealth && healthManager.currentHealth < healthManager.maxHealth)
+            if (isHealth)
             {
+                if(healthManager.currentHealth == healthManager.maxHealth)
+                {
+                    var outPut = player.GetComponentInChildren<Output>();
+                    outPut.timer = 5;
+                    outPut.goTimer = true;
+                    outPut.OutputDialog("I am completely healthy, but I always like to drink!");
+                }
+
                 // Восстановление здоровья
                 var current = healthManager.maxHealth - healthManager.currentHealth;
                 healthManager.currentHealth += current > healthRecovery ? healthRecovery : current;
@@ -82,6 +92,8 @@ public class Bonus : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            player = collision;
+
             canPickUp = true;
 
             if (isBonus)
@@ -103,6 +115,8 @@ public class Bonus : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            player = null;
+
             canPickUp = false;
 
             // Закрытие анимации 

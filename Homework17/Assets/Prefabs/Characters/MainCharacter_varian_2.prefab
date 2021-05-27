@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 3317790595550801754}
   m_Layer: 3
   m_Name: Warrior
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1532,7 +1532,7 @@ GameObject:
   - component: {fileID: 8084284722978661384}
   m_Layer: 13
   m_Name: GroundedCheck
-  m_TagString: Player
+  m_TagString: GroundChecker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
