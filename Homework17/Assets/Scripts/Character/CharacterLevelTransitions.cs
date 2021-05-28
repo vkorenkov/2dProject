@@ -40,9 +40,15 @@ public class CharacterLevelTransitions : MonoBehaviour
         {
             // Установка текущего уровня
             if (isBack)
-                StartCoroutine(ChangeCharacterPositionCoroutine(false));
+            {
+                StartCoroutine(ChangeCharacterPositionCoroutine(false, collision));
+
+                collision.GetComponent<MoveCharacter>().savePosition.UsePosition = true;
+            }
             else
-                StartCoroutine(ChangeCharacterPositionCoroutine(true));
+            {
+                StartCoroutine(ChangeCharacterPositionCoroutine(true, collision));
+            }
         }
     }
 
@@ -50,7 +56,7 @@ public class CharacterLevelTransitions : MonoBehaviour
     /// Меняет позицию игрока в зависимости от того с какой стороны игрок прошел границу камеры
     /// </summary>
     /// <returns></returns>
-    IEnumerator ChangeCharacterPositionCoroutine(bool isForward)
+    IEnumerator ChangeCharacterPositionCoroutine(bool isForward, Collider2D collision)
     {
         Animation blackoutAnimation = GameObject.Find("StartCanvas").GetComponent<Animation>();
 
@@ -58,6 +64,8 @@ public class CharacterLevelTransitions : MonoBehaviour
         blackoutAnimation[blackoutAnimation.clip.name].time = blackoutAnimation[blackoutAnimation.clip.name].length;
         blackoutAnimation[blackoutAnimation.clip.name].speed *= -1;
         blackoutAnimation.Play();
+
+        collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount = 0;
 
         yield return new WaitForSeconds(.5f);
 

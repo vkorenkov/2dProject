@@ -15,6 +15,8 @@ public class BulletLauncher : MonoBehaviour
     /// Объект вывода информации на экран
     /// </summary>
     [SerializeField] Output output;
+
+    public PlayerPrefs playerPrefs;
     /// <summary>
     /// Число доступных снарядов
     /// </summary>
@@ -30,7 +32,7 @@ public class BulletLauncher : MonoBehaviour
 
     private void Update()
     {
-        output.OutputProjectilesCount($"{bulletCount}");
+        output.OutputProjectilesCount($"{playerPrefs.BulletCount}");
     }
 
     /// <summary>
@@ -38,7 +40,7 @@ public class BulletLauncher : MonoBehaviour
     /// </summary>
     public void Shot()
     {
-        if (bulletCount == 0)
+        if (playerPrefs.BulletCount <= 0)
             return;
 
         // Создание экзкмпляра объекта снаряда

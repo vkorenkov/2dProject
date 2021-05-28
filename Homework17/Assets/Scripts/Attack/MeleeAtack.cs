@@ -36,8 +36,8 @@ public class MeleeAtack : MonoBehaviour
             var damageObject = d.GetComponent<HealthManager>();
             damageObject.TakeDamage(false, damage);
 
-            if (!damageObject.isAlive && transform.CompareTag("Player"))
-                GetComponentInParent<CollectObjects>().killedEnemies += 1;
+            if (!damageObject.isAlive && damageObject.CompareTag("Enemy"))
+                GetComponentInParent<CollectObjects>().collected.KilledEnemiesCount += 1;
         }
     }
 }

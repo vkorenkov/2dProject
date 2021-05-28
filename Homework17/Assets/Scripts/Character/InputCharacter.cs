@@ -218,7 +218,7 @@ public class InputCharacter : MonoBehaviour
     /// </summary>
     void ShootActivate()
     {
-        if (shotTimer > shotTime && bulletLauncher.bulletCount > 0)
+        if (shotTimer > shotTime && bulletLauncher.playerPrefs.BulletCount > 0)
         {
             if (Input.GetButton("Fire2"))
             {
@@ -226,7 +226,7 @@ public class InputCharacter : MonoBehaviour
 
                 ShotControl();
 
-                bulletLauncher.bulletCount -= 1;
+                bulletLauncher.playerPrefs.BulletCount -= 1;
             }
             else
                 shotTimer = shotTime + 1; // Прибаление единицы к таймеру для срабатывания первого выстрела при окончании таймера

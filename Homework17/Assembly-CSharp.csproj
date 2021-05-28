@@ -79,15 +79,19 @@
     <Compile Include="Assets\Scripts\MovePlatforms\UseMotorScript.cs" />
     <Compile Include="Assets\Scripts\Attack\MeleeAtack.cs" />
     <Compile Include="Assets\Scripts\MovePlatforms\SliderScript.cs" />
+    <Compile Include="Assets\Scripts\Character\PositionSaver.cs" />
     <Compile Include="Assets\Scripts\Triggers\DialogActivator.cs" />
     <Compile Include="Assets\Scripts\Attack\BulletLauncher.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuCharactermove.cs" />
     <Compile Include="Assets\Scripts\Attack\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\SavePosition.cs" />
     <Compile Include="Assets\Scripts\MovePlatforms\CartScript.cs" />
     <Compile Include="Assets\Scripts\Attack\StaticdamageObj.cs" />
     <Compile Include="Assets\Scripts\Character\Output.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterLevelTransitions.cs" />
     <Compile Include="Assets\Scripts\Other\AnimationActivator.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\Collected.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\PlayerPrefs.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

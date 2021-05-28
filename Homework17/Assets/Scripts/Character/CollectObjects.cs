@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollectObjects : MonoBehaviour
 {
@@ -8,14 +9,7 @@ public class CollectObjects : MonoBehaviour
     /// </summary>
     [SerializeField] Output output;
 
-    /// <summary>
-    ///  Указание, что дверь откроется при необходимом количестве убитых врагов
-    /// </summary>
-    public int killedEnemies;
-    /// <summary>
-    ///  Указание, что дверь откроется при необходимом количестве собранных предметов
-    /// </summary>
-    public int collectedObjectsCount;
+    public Collected collected;
 
     /// <summary>
     /// Коллекция описаний возле дверей
@@ -31,7 +25,7 @@ public class CollectObjects : MonoBehaviour
 
     private void Update()
     {
-        output.OutputBonusCount($"{collectedObjectsCount}");
-        output.OutputKillsCount($"{killedEnemies}");
+        output.OutputBonusCount($"Now: {collected.CollectedObjectsCount} / All: {collected.allBonuses}");
+        output.OutputKillsCount($"All: {collected.KilledEnemiesCount}");
     }
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SliderScript : MonoBehaviour
 {
@@ -102,20 +103,20 @@ public class SliderScript : MonoBehaviour
             {
                 if (isCollectDoor)
                 {
-                    if (collision.GetComponent<CollectObjects>().collectedObjectsCount >= collectedObjectCount)
+                    if (collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount >= collectedObjectCount)
                     {
                         slider.useMotor = false;
                         message.gameObject.SetActive(false);
                     }
                     else
                     {
-                        message.text = $"You must collect {collectedObjectCount} beer to get through! \n {CollectObjects.hints[InputCharacter.currentLevel]}";
+                        message.text = $"You must collect {collectedObjectCount} beer to get through! \n {CollectObjects.hints[SceneManager.GetActiveScene().buildIndex]}";
                         animationActivator.AnimationPlayback(message, true);
                     }
                 }
                 if (isKilleEnemiesDoor)
                 {
-                    if (collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount)
+                    if (collision.GetComponent<CollectObjects>().collected.KilledEnemiesCount >= killedEnemiesCount)
                     {
                         slider.useMotor = false;
                         message.gameObject.SetActive(false);
@@ -128,15 +129,15 @@ public class SliderScript : MonoBehaviour
                 }
                 if (isCollectDoor && isKilleEnemiesDoor)
                 {
-                    if (collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount
-                        && collision.GetComponent<CollectObjects>().killedEnemies >= killedEnemiesCount)
+                    if (collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount >= collectedObjectCount
+                        && collision.GetComponent<CollectObjects>().collected.KilledEnemiesCount >= killedEnemiesCount)
                     {
                         slider.useMotor = false;
                         message.gameObject.SetActive(false);
                     }
                     else
                     {
-                        message.text = $"You must collect {collectedObjectCount} beer and killed {killedEnemiesCount} enemies to get through! \n {CollectObjects.hints[InputCharacter.currentLevel]}";
+                        message.text = $"You must collect {collectedObjectCount} beer and killed {killedEnemiesCount} enemies to get through! \n {CollectObjects.hints[SceneManager.GetActiveScene().buildIndex]}";
                         animationActivator.AnimationPlayback(message, true);
                     }
                 }

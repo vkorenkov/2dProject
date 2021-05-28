@@ -1,36 +1,32 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnChanger : MonoBehaviour
 {
-    [SerializeField] Transform MainCharacterPosition;
-    [SerializeField] public List<Transform> spawns;
-
     KeyCode keyCode;
 
     private void Update()
     {
-        if (spawns.Count > 0)
+        switch (keyCode)
         {
-            switch (keyCode)
-            {
-                case KeyCode.Alpha1:
-                    ChangePosition(0);
-                    break;
-                case KeyCode.Alpha2:
-                    ChangePosition(1);
-                    break;
-            }
-
-            keyCode = default;
+            case KeyCode.Alpha1:
+                SceneManager.LoadScene("L1");
+                break;
+            case KeyCode.Alpha2:
+                SceneManager.LoadScene("L2");
+                break;
+            case KeyCode.Alpha3:
+                SceneManager.LoadScene("L3");
+                break;
+            case KeyCode.Alpha4:
+                SceneManager.LoadScene("L4");
+                break;
+            case KeyCode.Alpha5:
+                SceneManager.LoadScene("L5");
+                break;
         }
-    }
 
-    public void ChangePosition(int spawnNumber)
-    {
-        MainCharacterPosition.position = spawns[spawnNumber].position;
+        keyCode = default;
     }
 
     void OnGUI()

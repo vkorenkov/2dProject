@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField] Animation LoseAnimation; 
+    [SerializeField] Animation LoseAnimation;
+    [SerializeField] PlayerPrefs playerPrefs;
+    [SerializeField] Collected playerCollected;
 
     private void Awake()
     {
@@ -19,6 +21,10 @@ public class MenuScript : MonoBehaviour
 
     public void RestartGame()
     {
+        var player = GameObject.FindGameObjectWithTag("Player");
+        playerCollected.KilledEnemiesCount = 0;
+        playerCollected.CollectedObjectsCount = 0;
+        playerPrefs.CurrentHealth = player.GetComponent<HealthManager>().playerPrefs.MaxHealth;
         // Загрузка сцены
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

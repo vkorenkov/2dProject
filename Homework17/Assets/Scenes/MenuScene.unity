@@ -1373,6 +1373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6940ca103f543474cb0b8d6dd77801f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefs: {fileID: 11400000, guid: bba3bcb51fc4dc146a2153105494be76, type: 2}
+  collected: {fileID: 11400000, guid: a40a0397ad82df44787a35c0fa5dd68a, type: 2}
 --- !u!4 &18074999523125633
 Transform:
   m_ObjectHideFlags: 0

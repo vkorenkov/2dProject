@@ -42,12 +42,16 @@ public class Bonus : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && canPickUp)
         {
-            if (isBonus) collectObjects.collectedObjectsCount += 1; // ѕрибавление собранного бонуса
+            if (isBonus)
+            {
+                collectObjects.collected.CollectedObjectsCount += 1; // ѕрибавление собранного бонуса
+                collectObjects.collected.allBonuses += 1;
+            }
 
             // ќпределение количества здоровь€, чтобы не получить более 100% здоровь€
             if (isHealth)
             {
-                if(healthManager.currentHealth == healthManager.maxHealth)
+                if(healthManager.playerPrefs.CurrentHealth == healthManager.playerPrefs.MaxHealth)
                 {
                     var outPut = player.GetComponentInChildren<Output>();
                     outPut.timer = 5;
@@ -56,8 +60,8 @@ public class Bonus : MonoBehaviour
                 }
 
                 // ¬осстановление здоровь€
-                var current = healthManager.maxHealth - healthManager.currentHealth;
-                healthManager.currentHealth += current > healthRecovery ? healthRecovery : current;
+                var current = healthManager.playerPrefs.MaxHealth - healthManager.playerPrefs.CurrentHealth;
+                healthManager.playerPrefs.CurrentHealth += current > healthRecovery ? healthRecovery : current;
             }
             else if (!isBonus)
                 return;
@@ -104,7 +108,7 @@ public class Bonus : MonoBehaviour
 
             if (isProjectile)
             {
-                bulletLauncher.bulletCount += projectileRecovery;
+                bulletLauncher.playerPrefs.BulletCount += projectileRecovery;
                 getBonusEffect.Play();
                 StartCoroutine(ParticlesPlaybackTime());
             }

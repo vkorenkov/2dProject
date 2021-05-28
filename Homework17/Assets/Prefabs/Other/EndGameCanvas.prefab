@@ -393,6 +393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoseAnimation: {fileID: 5511753037950406138}
+  playerPrefs: {fileID: 11400000, guid: bba3bcb51fc4dc146a2153105494be76, type: 2}
+  playerCollected: {fileID: 11400000, guid: a40a0397ad82df44787a35c0fa5dd68a, type: 2}
 --- !u!1 &5511753037849070756
 GameObject:
   m_ObjectHideFlags: 0

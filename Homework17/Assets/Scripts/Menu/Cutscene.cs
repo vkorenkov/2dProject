@@ -91,7 +91,7 @@ public class Cutscene : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // Загрузка сцены уровня
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("L1");
 
         #region Использовать если катсцена на одной сцене с уровнем
         //inputCharacter.ControlEnableChange(true);

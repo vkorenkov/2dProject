@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 2739987761160417636}
   - component: {fileID: 3166374237199532722}
   - component: {fileID: 2304998809283994446}
+  - component: {fileID: -4305055870109086256}
   - component: {fileID: 3283866234901336805}
   - component: {fileID: 3283866234901336806}
   m_Layer: 3
@@ -221,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d7747e9c732d4ba5dd90d1cbcfc8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savePosition: {fileID: 11400000, guid: 94f5fed64eee36f4ba76dbdd59055326, type: 2}
   characterSpeed: 2
   maxSpeed: 2
   jumpForce: 2.7
@@ -262,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 1
   godMode: 0
+  playerPrefs: {fileID: 11400000, guid: bba3bcb51fc4dc146a2153105494be76, type: 2}
   maxHealth: 100
   currentHealth: 0
   isAlive: 0
@@ -294,8 +297,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   output: {fileID: 2739987761399636826}
-  killedEnemies: 0
-  collectedObjectsCount: 0
+  collected: {fileID: 11400000, guid: a40a0397ad82df44787a35c0fa5dd68a, type: 2}
+--- !u!114 &-4305055870109086256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2739987761160417634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5e730a0a5e22149ad0d1396b662aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCharacterPosition: {fileID: 0}
+  spawns: []
 --- !u!50 &3283866234901336805
 Rigidbody2D:
   serializedVersion: 4
@@ -1281,6 +1297,7 @@ MonoBehaviour:
   launcher: {fileID: 2739987761877726478}
   bulletSpeed: 2.5
   output: {fileID: 2739987761399636826}
+  playerPrefs: {fileID: 11400000, guid: bba3bcb51fc4dc146a2153105494be76, type: 2}
   bulletCount: 0
   bullet: {fileID: 1760164494302353223, guid: 10488563f3903dc47adbe9ea2255b9b6, type: 3}
   bulletTorque: 20

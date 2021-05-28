@@ -17,6 +17,8 @@ public class HealthManager : MonoBehaviour
     public event ControlDel DeathEvent;
 
     [SerializeField] bool godMode;
+
+    [SerializeField] public PlayerPrefs playerPrefs;
     /// <summary>
     /// ћаксимальное количество здоровь€ персонажа
     /// </summary>
@@ -28,7 +30,13 @@ public class HealthManager : MonoBehaviour
 
     float CurrentHealthPercent
     {
-        get => Mathf.Round(currentHealth / maxHealth * 100);
+        get
+        {
+            if (playerPrefs)
+                return Mathf.Round(playerPrefs.CurrentHealth / playerPrefs.MaxHealth * 100);
+            else
+                return Mathf.Round(currentHealth / maxHealth * 100);
+        }
     }
     /// <summary>
     /// —осто€ние персонажа
@@ -53,14 +61,17 @@ public class HealthManager : MonoBehaviour
     private void Awake()
     {
         isAlive = true; // Ќазначение состо€ни€ персонажа
-        currentHealth = maxHealth; // ”становка значени€ текущего здоровь€
+        if (!playerPrefs) currentHealth = maxHealth; // ”становка значени€ текущего здоровь€
     }
 
     private void Update()
     {
         if (output)
         {
-            currentHealth = currentHealth >= 0 ? currentHealth : 0; // ≈сли уровень здоровь€ упадет ниже нул€, то будет выводитс€ "0"
+            if (playerPrefs)
+                playerPrefs.CurrentHealth = playerPrefs.CurrentHealth >= 0 ? playerPrefs.CurrentHealth : 0; // ≈сли уровень здоровь€ упадет ниже нул€, то будет выводитс€ "0"
+            else
+                currentHealth = currentHealth >= 0 ? currentHealth : 0;
 
             textColor = CheckHealthColor(); // ”становка цвета текта здоровь€
 
@@ -82,7 +93,8 @@ public class HealthManager : MonoBehaviour
         if (totaldamage)
         {
             isDamaged = false;
-            currentHealth -= currentHealth;
+            if (playerPrefs) playerPrefs.CurrentHealth -= playerPrefs.CurrentHealth;
+            else currentHealth -= currentHealth;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
@@ -93,7 +105,8 @@ public class HealthManager : MonoBehaviour
             return;
 
         // ¬ычитание здоровь€ персонажа в соответствии с уроном
-        currentHealth -= damage;
+        if (playerPrefs) playerPrefs.CurrentHealth -= damage;
+        else currentHealth -= damage;
 
         if (isPlayer) isDamaged = true;
 
@@ -170,7 +183,10 @@ public class HealthManager : MonoBehaviour
     /// <returns></returns>
     bool CheckCharacterHealth()
     {
-        return currentHealth > 0;
+        if (playerPrefs)
+            return playerPrefs.CurrentHealth > 0;
+        else
+            return currentHealth > 0;
     }
 
     /// <summary>
@@ -179,6 +195,9 @@ public class HealthManager : MonoBehaviour
     /// <returns></returns>
     Color CheckHealthColor()
     {
-        return new Color((maxHealth - currentHealth) / 100 + 0.5f, CurrentHealthPercent / 100, 0);
+        if (playerPrefs)
+            return new Color((playerPrefs.MaxHealth - playerPrefs.CurrentHealth) / 100 + 0.5f, CurrentHealthPercent / 100, 0);
+        else
+            return new Color((maxHealth - currentHealth) / 100 + 0.5f, CurrentHealthPercent / 100, 0);
     }
 }

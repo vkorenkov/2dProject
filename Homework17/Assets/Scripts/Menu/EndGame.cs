@@ -26,7 +26,7 @@ public class EndGame : MonoBehaviour
             collision.GetComponent<InputCharacter>().ControlEnableChange(false);
             // Получение объекта собранных предметов
             collectedObjects = collision.gameObject.GetComponent<CollectObjects>();
-            StartCoroutine(EndCoroutine(collectedObjects.collectedObjectsCount));
+            StartCoroutine(EndCoroutine(collectedObjects.collected.allBonuses));
         }
     }
 
@@ -41,7 +41,7 @@ public class EndGame : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
 
-            collectedObjects.collectedObjectsCount -= 1;
+            collectedObjects.collected.allBonuses -= 1;
 
             // Случайная точка создания предмета по горизонтали
             var randomX = Random.Range(GetComponent<BoxCollider2D>().bounds.min.x + 0.5f, GetComponent<BoxCollider2D>().bounds.max.x);

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MoveCharacter : MonoBehaviour
 {
+    public SavePosition savePosition;
+
     /// <summary>
     /// Поле компонента RigitBody героя
     /// </summary>
@@ -20,7 +22,7 @@ public class MoveCharacter : MonoBehaviour
     /// <summary>
     /// Поле высоты прыжка главного героя
     /// </summary>
-    [SerializeField, Range(0.1f, 3f), Header("Force of jump")] 
+    [SerializeField, Range(0.1f, 3f), Header("Force of jump")]
     float jumpForce;
 
     [SerializeField] Transform WarriorTransform;
@@ -63,6 +65,13 @@ public class MoveCharacter : MonoBehaviour
         // Получение компонента RigitBody героя
         //characterRb = GetComponentInChildren<Rigidbody2D>();
         characterRb = GetComponent<Rigidbody2D>();
+
+        if (savePosition.UsePosition)
+        {
+            transform.position = savePosition.Position;
+            WarriorTransform.rotation = RotateSide(-1);
+            savePosition.UsePosition = false;
+        }
     }
 
     /// <summary>
@@ -121,14 +130,14 @@ public class MoveCharacter : MonoBehaviour
     {
         // Установка родителем главного героя движущегося предмета
         // для передвижения вместе с ним
-        if (collision.transform.tag.ToLower() == "movable")
+        if (collision.gameObject.CompareTag("Movable"))
             transform.SetParent(collision.transform);
     }
 
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.tag.ToLower() == "movable")
+        if (collision.gameObject.CompareTag("Movable"))
         {
             // Сброс родителя главного героя
             transform.parent = null;
