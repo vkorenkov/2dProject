@@ -101,6 +101,22 @@ public class SliderScript : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
+                if (isCollectDoor && isKilleEnemiesDoor)
+                {
+                    if (collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount >= collectedObjectCount
+                        && collision.GetComponent<CollectObjects>().collected.KilledEnemiesCount >= killedEnemiesCount)
+                    {
+                        slider.useMotor = false;
+                        message.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        message.text = $"You must collect {collectedObjectCount} beer and killed {killedEnemiesCount} " +
+                            $"enemies to get through! \n {CollectObjects.hints[SceneManager.GetActiveScene().buildIndex - 1]}";
+                        animationActivator.AnimationPlayback(message, true);
+                        return;
+                    }
+                }
                 if (isCollectDoor)
                 {
                     if (collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount >= collectedObjectCount)
@@ -110,7 +126,7 @@ public class SliderScript : MonoBehaviour
                     }
                     else
                     {
-                        message.text = $"You must collect {collectedObjectCount} beer to get through! \n {CollectObjects.hints[SceneManager.GetActiveScene().buildIndex]}";
+                        message.text = $"You must collect {collectedObjectCount} beer to get through! \n {CollectObjects.hints[SceneManager.GetActiveScene().buildIndex - 1]}";
                         animationActivator.AnimationPlayback(message, true);
                     }
                 }
@@ -124,20 +140,6 @@ public class SliderScript : MonoBehaviour
                     else
                     {
                         message.text = $"You must killed {killedEnemiesCount} enemies to get through!";
-                        animationActivator.AnimationPlayback(message, true);
-                    }
-                }
-                if (isCollectDoor && isKilleEnemiesDoor)
-                {
-                    if (collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount >= collectedObjectCount
-                        && collision.GetComponent<CollectObjects>().collected.KilledEnemiesCount >= killedEnemiesCount)
-                    {
-                        slider.useMotor = false;
-                        message.gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        message.text = $"You must collect {collectedObjectCount} beer and killed {killedEnemiesCount} enemies to get through! \n {CollectObjects.hints[SceneManager.GetActiveScene().buildIndex]}";
                         animationActivator.AnimationPlayback(message, true);
                     }
                 }

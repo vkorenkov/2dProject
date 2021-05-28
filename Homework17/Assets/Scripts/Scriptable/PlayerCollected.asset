@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0301a7f1aa6bcf4ab1d4d6c5ddd15f4, type: 3}
   m_Name: PlayerCollected
   m_EditorClassIdentifier: 
-  allBonuses: 0
-  killedEnemiesCount: 0
+  allBonuses: 8
+  killedEnemiesCount: 12
   collectedObjectsCount: 0

@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Other\AnimationActivator.cs" />
     <Compile Include="Assets\Scripts\Scriptable\Collected.cs" />
     <Compile Include="Assets\Scripts\Scriptable\PlayerPrefs.cs" />
+    <Compile Include="Assets\Scripts\Other\OpenTheDoor.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
