@@ -3,7 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Collected", menuName = "Player collected")]
 public class Collected : ScriptableObject
 {
-    public int allBonuses;
+    [HideInInspector] public int loadCount;
+
+    [HideInInspector] public int allBonuses;
 
     [SerializeField] private int killedEnemiesCount;
     public int KilledEnemiesCount

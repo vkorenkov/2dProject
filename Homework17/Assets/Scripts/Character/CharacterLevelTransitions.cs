@@ -65,7 +65,9 @@ public class CharacterLevelTransitions : MonoBehaviour
         blackoutAnimation[blackoutAnimation.clip.name].speed *= -1;
         blackoutAnimation.Play();
 
-        collision.GetComponent<CollectObjects>().collected.CollectedObjectsCount = 0;
+        var temp = collision.GetComponent<CollectObjects>();
+        temp.collected.CollectedObjectsCount = 0;
+        temp.collected.loadCount = temp.collected.allBonuses;
 
         yield return new WaitForSeconds(.5f);
 

@@ -24,6 +24,7 @@ public class MenuScript : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player");
         playerCollected.KilledEnemiesCount = 0;
         playerCollected.CollectedObjectsCount = 0;
+        playerCollected.allBonuses = playerCollected.loadCount;
         playerPrefs.CurrentHealth = player.GetComponent<HealthManager>().playerPrefs.MaxHealth;
         // Загрузка сцены
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
